@@ -105,7 +105,6 @@ namespace gc_proj_2.Objects {
 			// Midpoint circle algorithm
 			int dE = 3, dSE = 5 - 2 * Radius, d = 1 - Radius;
 			int x = 0, y = Radius;
-			float mul;
 
 			putThickPixel (pixels, x, y, width, height, color, scanlineWidth, channels);
 

@@ -93,18 +93,14 @@ namespace gc_proj_2.Objects {
 
 					// pixel copying
 					if (thickness > 1) {
-						for (int i = 0; i < Math.Ceiling ((thickness - 1) / 2.0); ++i) {
-							if (cx + i > width) break;
+						int min = (int) Math.Floor ((thickness - 1) / 2.0);
+						int max = (int) Math.Ceiling ((thickness - 1) / 2.0);
+
+						for (int i = -min; i < max; ++i) {
+							if (cx + i > width || cx + i < 0) continue;
 							pixels [cy * scanlineWidth + (cx + i) * channels + 0] = color.R;
 							pixels [cy * scanlineWidth + (cx + i) * channels + 1] = color.G;
 							pixels [cy * scanlineWidth + (cx + i) * channels + 2] = color.B;
-						}
-
-						for (int i = 0; i < Math.Floor ((thickness - 1) / 2.0); ++i) {
-							if (cx - i < 0) break;
-							pixels [cy * scanlineWidth + (cx - i) * channels + 0] = color.R;
-							pixels [cy * scanlineWidth + (cx - i) * channels + 1] = color.G;
-							pixels [cy * scanlineWidth + (cx - i) * channels + 2] = color.B;
 						}
 					}
 
@@ -124,18 +120,14 @@ namespace gc_proj_2.Objects {
 
 					// pixel copying
 					if (thickness > 1) {
-						for (int i = 0; i < Math.Ceiling ((thickness - 1) / 2.0); ++i) {
-							if (cy + i > height) break;
+						int min = (int) Math.Floor ((thickness - 1) / 2.0);
+						int max = (int) Math.Ceiling ((thickness - 1) / 2.0);
+
+						for (int i = -min; i < max; ++i) {
+							if (cy + i > height || cy + i < 0) continue;
 							pixels [(cy + i) * scanlineWidth + cx * channels + 0] = color.R;
 							pixels [(cy + i) * scanlineWidth + cx * channels + 1] = color.G;
 							pixels [(cy + i) * scanlineWidth + cx * channels + 2] = color.B;
-						}
-
-						for (int i = 0; i < Math.Floor ((thickness - 1) / 2.0); ++i) {
-							if (cy - i < 0) break;
-							pixels [(cy - i) * scanlineWidth + cx * channels + 0] = color.R;
-							pixels [(cy - i) * scanlineWidth + cx * channels + 1] = color.G;
-							pixels [(cy - i) * scanlineWidth + cx * channels + 2] = color.B;
 						}
 					}
 
