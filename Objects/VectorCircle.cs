@@ -79,6 +79,23 @@ namespace gc_proj_2.Objects {
 			putPixel (pixels, center.X - x, center.Y - y, w, h, color, scanlineWidth, channels); // 8th octant
 		}
 
+		private void putThickPixel (byte [] pixels, int x, int y, int w, int h, Color color, int scanlineWidth, int channels) {
+			putCirclePixel (pixels, x, y, w, h, color, scanlineWidth, channels);
+
+			if (thickness > 1) {
+				int min = (int) Math.Floor ((thickness - 1) / 2.0);
+				int max = (int) Math.Ceiling ((thickness - 1) / 2.0);
+
+				for (int dx = -min; dx < max; ++dx) {
+					for (int dy = -min; dy < max; ++dy) {
+						if (dx * dx + dy * dy <= max * max) {
+							putCirclePixel (pixels, x + dx, y + dy, w, h, color, scanlineWidth, channels);
+						}
+					}
+				}
+			}
+		}
+
 		public void Draw (byte [] pixels, int width, int height, int stride) {
 			// additional data needed for setting correct pixel in the byte array
 			int channels = stride / width;
@@ -88,8 +105,9 @@ namespace gc_proj_2.Objects {
 			// Midpoint circle algorithm
 			int dE = 3, dSE = 5 - 2 * Radius, d = 1 - Radius;
 			int x = 0, y = Radius;
+			float mul;
 
-			putCirclePixel (pixels, x, y, width, height, color, scanlineWidth, channels);
+			putThickPixel (pixels, x, y, width, height, color, scanlineWidth, channels);
 
 			while (y > x) {
 				if (d < 0) {
@@ -104,7 +122,7 @@ namespace gc_proj_2.Objects {
 				}
 
 				++x;
-				putCirclePixel (pixels, x, y, width, height, color, scanlineWidth, channels);
+				putThickPixel (pixels, x, y, width, height, color, scanlineWidth, channels);
 			}
 		}
 
