@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+// DDA, Midpoint Circle (v2. - additions only), Pixel Copying, Gupta-Sproull 
 namespace gc_proj_2 {
 	public partial class MainWindow : Form {
 		private Dictionary<string, IVectorObject> objects;
@@ -38,10 +39,15 @@ namespace gc_proj_2 {
 			// initial project
 			objects = new Dictionary<string, IVectorObject> ();
 			NewProject (500, 400);
+
+			// test
+			objects.Add ("line1", new Objects.VectorLine (new Point (0, 0), new Point (200, 110), Color.Black, 16));
+			objects.Add ("line2", new Objects.VectorLine (new Point (0, 0), new Point (110, 200), Color.Black, 16));
+			redraw ();
 		}
 
 		private Bitmap makeWhiteBitmap (int width, int height) {
-			Bitmap bitmap = new Bitmap (canvasWidth, canvasHeight, PixelFormat.Format24bppRgb);
+			Bitmap bitmap = new Bitmap (width, height, PixelFormat.Format24bppRgb);
 
 			using (var ctx = Graphics.FromImage (bitmap)) {
 				ctx.Clear (Color.White);
