@@ -34,12 +34,12 @@ namespace gc_proj_2 {
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.layoutMain = new System.Windows.Forms.TableLayoutPanel();
 			this.canvas = new System.Windows.Forms.PictureBox();
+			this.panelTools = new System.Windows.Forms.FlowLayoutPanel();
 			this.menuStrip.SuspendLayout();
 			this.layoutMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
@@ -117,17 +117,10 @@ namespace gc_proj_2 {
 			// editToolStripMenuItem
 			// 
 			this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.undoToolStripMenuItem,
             this.redoToolStripMenuItem});
 			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
 			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
 			this.editToolStripMenuItem.Text = "Edit";
-			// 
-			// undoToolStripMenuItem
-			// 
-			this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-			this.undoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-			this.undoToolStripMenuItem.Text = "Undo";
 			// 
 			// redoToolStripMenuItem
 			// 
@@ -154,22 +147,33 @@ namespace gc_proj_2 {
 			this.layoutMain.ColumnCount = 1;
 			this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.layoutMain.Controls.Add(this.canvas, 0, 1);
+			this.layoutMain.Controls.Add(this.panelTools, 0, 0);
 			this.layoutMain.Location = new System.Drawing.Point(0, 27);
 			this.layoutMain.Name = "layoutMain";
 			this.layoutMain.RowCount = 2;
-			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.layoutMain.Size = new System.Drawing.Size(1084, 653);
 			this.layoutMain.TabIndex = 2;
 			// 
 			// canvas
 			// 
-			this.canvas.Location = new System.Drawing.Point(3, 78);
+			this.canvas.Location = new System.Drawing.Point(3, 38);
 			this.canvas.Name = "canvas";
 			this.canvas.Size = new System.Drawing.Size(1078, 572);
 			this.canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.canvas.TabIndex = 0;
 			this.canvas.TabStop = false;
+			// 
+			// panelTools
+			// 
+			this.panelTools.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panelTools.Location = new System.Drawing.Point(3, 3);
+			this.panelTools.Name = "panelTools";
+			this.panelTools.Size = new System.Drawing.Size(1078, 29);
+			this.panelTools.TabIndex = 1;
 			// 
 			// MainWindow
 			// 
@@ -202,13 +206,13 @@ namespace gc_proj_2 {
 		private System.Windows.Forms.ToolStripMenuItem exportAsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private System.Windows.Forms.TableLayoutPanel layoutMain;
 		private System.Windows.Forms.PictureBox canvas;
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+		private System.Windows.Forms.FlowLayoutPanel panelTools;
 	}
 }
 

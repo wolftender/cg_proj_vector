@@ -11,6 +11,7 @@ namespace gc_proj_2.Objects {
 		private Point p2;
 		private Color color;
 		private int thickness;
+		private bool dotted;
 
 		public Point P1 {
 			get { return p1; }
@@ -32,6 +33,11 @@ namespace gc_proj_2.Objects {
 			set {
 				thickness = Math.Max (1, Math.Min (16, value));
 			}
+		}
+
+		public bool Dotted {
+			get { return dotted; }
+			set { dotted = value; }
 		}
 
 		public string Name => "Line";
@@ -79,11 +85,16 @@ namespace gc_proj_2.Objects {
 			float dy = endPoint.Y - startPoint.Y;
 			int cx, cy;
 			
-			if (dx > dy) {
+			if (dx >= dy) {
 				float m = dy / dx;
 				float y = startPoint.Y;
 
-				for (int x = Math.Min(startPoint.X, endPoint.X); x < Math.Max (startPoint.X, endPoint.X); ++x) {
+				for (int x = Math.Min(startPoint.X, endPoint.X), j = 0; x < Math.Max (startPoint.X, endPoint.X); ++x, ++j) {
+					if (dotted && j % 6 < 3) {
+						y += m;
+						continue;
+					}
+
 					cx = x;
 					cy = (int) y;
 
@@ -110,7 +121,12 @@ namespace gc_proj_2.Objects {
 				float m = dx / dy;
 				float x = startPoint.Y;
 
-				for (int y = Math.Min (startPoint.Y, endPoint.Y); y < Math.Max (startPoint.Y, endPoint.Y); ++y) {
+				for (int y = Math.Min (startPoint.Y, endPoint.Y), j = 0; y < Math.Max (startPoint.Y, endPoint.Y); ++y, ++j) {
+					if (dotted && j % 6 < 3) {
+						x += m;
+						continue;
+					}
+
 					cx = (int) x;
 					cy = y;
 

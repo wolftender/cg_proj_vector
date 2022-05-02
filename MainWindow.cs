@@ -43,6 +43,7 @@ namespace gc_proj_2 {
 			// test
 			objects.Add ("line1", new Objects.VectorLine (new Point (0, 0), new Point (200, 110), Color.Black, 16));
 			objects.Add ("line2", new Objects.VectorLine (new Point (0, 0), new Point (110, 200), Color.Black, 16));
+			objects.Add ("line3", new Objects.VectorLine (new Point (0, 0), new Point (200, 200), Color.Black, 1) { Dotted = true });
 			objects.Add ("circle1", new Objects.VectorCircle (new Point (200, 200), 30, Color.Black));
 			objects.Add ("circle2", new Objects.VectorCircle (new Point (200, 200), 60, Color.Black, 16));
 			redraw ();
