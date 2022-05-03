@@ -10,9 +10,15 @@ using gc_proj_2.Objects;
 namespace gc_proj_2.Editors {
 	class CircleEditor : ObjectEditor {
 		private VectorCircle circle;
+		private VectorCircle markerCenter;
 
 		public CircleEditor (MainWindow window, VectorCircle circle) : base (window) {
 			this.circle = circle;
+			markerCenter = new VectorCircle (circle.Center, 7, Color.Red, 4);
+		}
+
+		public override void Initialize () {
+			MainWindow.TempObjects.Add (markerCenter);
 		}
 
 		public override void OnColorChange (Color newColor) {

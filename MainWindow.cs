@@ -15,6 +15,8 @@ using System.Windows.Forms;
 namespace gc_proj_2 {
 	public partial class MainWindow : Form {
 		private Dictionary<string, IVectorObject> objects;
+		private List<IVectorObject> tempObjects;
+
 		private Bitmap canvasBitmap;
 
 		private int canvasWidth;
@@ -46,10 +48,34 @@ namespace gc_proj_2 {
 
 		public ObjectEditor CurrentTool {
 			get { return currentTool; }
-			set { currentTool = value; }
+			set {
+				tempObjects.Clear ();
+				currentTool = value;
+				
+				if (currentTool != null) {
+					currentTool.Initialize ();
+				}
+
+				redraw ();
+				updateToolbar ();
+			}
+		}
+		
+		private void updateToolbar () {
+			buttonCursor.Checked = (currentTool == null);
+			buttonLine.Checked = false;
+			buttonPolygon.Checked = false;
+			buttonCircle.Checked = false;
+		}
+
+		public List<IVectorObject> TempObjects {
+			get { return tempObjects; }
 		}
 
 		public MainWindow () {
+			objects = new Dictionary<string, IVectorObject> ();
+			tempObjects = new List<IVectorObject> ();
+
 			InitializeComponent ();
 
 			// initial settings
@@ -59,7 +85,6 @@ namespace gc_proj_2 {
 			buttonCursor.Checked = true;
 
 			// initial project
-			objects = new Dictionary<string, IVectorObject> ();
 			NewProject (500, 400);
 
 			// test
@@ -124,6 +149,11 @@ namespace gc_proj_2 {
 
 			// draw each object
 			foreach (var vectorObj in objects.Values) {
+				vectorObj.Draw (pixels, canvasWidth, canvasHeight, data.Stride);
+			}
+
+			// logic for rendering the temp. editor objects
+			foreach (var vectorObj in tempObjects) {
 				vectorObj.Draw (pixels, canvasWidth, canvasHeight, data.Stride);
 			}
 
@@ -219,34 +249,22 @@ namespace gc_proj_2 {
 
 		private void buttonCursor_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
-				buttonLine.Checked = false;
-				buttonPolygon.Checked = false;
-				buttonCircle.Checked = false;
-				currentTool = null;
+				CurrentTool = null;
 			}
 		}
 
 		private void buttonLine_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
-				buttonCursor.Checked = false;
-				buttonPolygon.Checked = false;
-				buttonCircle.Checked = false;
 			}
 		}
 
 		private void buttonPolygon_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
-				buttonLine.Checked = false;
-				buttonCursor.Checked = false;
-				buttonCircle.Checked = false;
 			}
 		}
 
 		private void buttonCircle_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
-				buttonLine.Checked = false;
-				buttonPolygon.Checked = false;
-				buttonCursor.Checked = false;
 			}
 		}
 
@@ -256,10 +274,7 @@ namespace gc_proj_2 {
 					currentTool = null;
 					objects.Remove (pair.Key);
 
-					buttonCursor.Checked = true;
-					buttonLine.Checked = false;
-					buttonPolygon.Checked = false;
-					buttonCircle.Checked = false;
+					CurrentTool = null;
 				}
 			}
 		}

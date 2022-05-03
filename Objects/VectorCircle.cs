@@ -63,9 +63,9 @@ namespace gc_proj_2.Objects {
 		private void putPixel (byte [] pixels, int x, int y, int w, int h, Color color, int scanlineWidth, int channels) {
 			if (x < 0 || x > w || y < 0 || y > h) return;
 
-			pixels [y * scanlineWidth + x * channels + 0] = color.R;
+			pixels [y * scanlineWidth + x * channels + 0] = color.B;
 			pixels [y * scanlineWidth + x * channels + 1] = color.G;
-			pixels [y * scanlineWidth + x * channels + 2] = color.B;
+			pixels [y * scanlineWidth + x * channels + 2] = color.R;
 		}
 
 		private void putCirclePixel (byte [] pixels, int x, int y, int w, int h, Color color, int scanlineWidth, int channels) {

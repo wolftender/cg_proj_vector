@@ -10,9 +10,18 @@ using gc_proj_2.Objects;
 namespace gc_proj_2.Editors {
 	public class LineEditor : ObjectEditor {
 		private VectorLine line;
+		private VectorCircle markerStart, markerEnd;
 
 		public LineEditor (MainWindow window, VectorLine line) : base (window) {
 			this.line = line;
+
+			markerStart = new VectorCircle (line.P1, 7, Color.Red, 4);
+			markerEnd = new VectorCircle (line.P2, 7, Color.Red, 4);
+		}
+
+		public override void Initialize () {
+			MainWindow.TempObjects.Add (markerStart);
+			MainWindow.TempObjects.Add (markerEnd);
 		}
 
 		public override void OnColorChange (Color newColor) {

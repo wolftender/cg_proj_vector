@@ -73,6 +73,12 @@ namespace gc_proj_2.Objects {
 			return new VectorLine (p1, p2, color);
 		}
 
+		private void setPixel (byte [] pixels, int cx, int cy, int scanlineWidth, int channels, Color color) {
+			pixels [cy * scanlineWidth + cx * channels + 0] = color.B;
+			pixels [cy * scanlineWidth + cx * channels + 1] = color.G;
+			pixels [cy * scanlineWidth + cx * channels + 2] = color.R;
+		}
+
 		public void Draw (byte [] pixels, int width, int height, int stride) {
 			// additional data needed for setting correct pixel in the byte array
 			int channels = stride / width;
@@ -99,9 +105,7 @@ namespace gc_proj_2.Objects {
 					cx = x;
 					cy = (int) y;
 
-					pixels [cy * scanlineWidth + cx * channels + 0] = color.R;
-					pixels [cy * scanlineWidth + cx * channels + 1] = color.G;
-					pixels [cy * scanlineWidth + cx * channels + 2] = color.B;
+					setPixel (pixels, cx, cy, scanlineWidth, channels, color);
 
 					// pixel copying
 					if (thickness > 1) {
@@ -110,9 +114,7 @@ namespace gc_proj_2.Objects {
 
 						for (int i = -min; i < max; ++i) {
 							if (cx + i > width || cx + i < 0) continue;
-							pixels [cy * scanlineWidth + (cx + i) * channels + 0] = color.R;
-							pixels [cy * scanlineWidth + (cx + i) * channels + 1] = color.G;
-							pixels [cy * scanlineWidth + (cx + i) * channels + 2] = color.B;
+							setPixel (pixels, cx + i, cy, scanlineWidth, channels, color);
 						}
 					}
 
@@ -131,9 +133,7 @@ namespace gc_proj_2.Objects {
 					cx = (int) x;
 					cy = y;
 
-					pixels [cy * scanlineWidth + cx * channels + 0] = color.R;
-					pixels [cy * scanlineWidth + cx * channels + 1] = color.G;
-					pixels [cy * scanlineWidth + cx * channels + 2] = color.B;
+					setPixel (pixels, cx, cy, scanlineWidth, channels, color);
 
 					// pixel copying
 					if (thickness > 1) {
@@ -142,9 +142,7 @@ namespace gc_proj_2.Objects {
 
 						for (int i = -min; i < max; ++i) {
 							if (cy + i > height || cy + i < 0) continue;
-							pixels [(cy + i) * scanlineWidth + cx * channels + 0] = color.R;
-							pixels [(cy + i) * scanlineWidth + cx * channels + 1] = color.G;
-							pixels [(cy + i) * scanlineWidth + cx * channels + 2] = color.B;
+							setPixel (pixels, cx, cy + i, scanlineWidth, channels, color);
 						}
 					}
 
