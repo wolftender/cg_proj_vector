@@ -40,9 +40,14 @@ namespace gc_proj_2 {
 			this.layoutMain = new System.Windows.Forms.TableLayoutPanel();
 			this.canvas = new System.Windows.Forms.PictureBox();
 			this.panelTools = new System.Windows.Forms.FlowLayoutPanel();
+			this.buttonColor = new System.Windows.Forms.Button();
+			this.buttonLine = new System.Windows.Forms.Button();
+			this.buttonPolygon = new System.Windows.Forms.Button();
+			this.buttonCircle = new System.Windows.Forms.Button();
 			this.menuStrip.SuspendLayout();
 			this.layoutMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
+			this.panelTools.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// statusStrip
@@ -125,7 +130,7 @@ namespace gc_proj_2 {
 			// redoToolStripMenuItem
 			// 
 			this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-			this.redoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+			this.redoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
 			this.redoToolStripMenuItem.Text = "Redo";
 			// 
 			// helpToolStripMenuItem
@@ -151,16 +156,16 @@ namespace gc_proj_2 {
 			this.layoutMain.Location = new System.Drawing.Point(0, 27);
 			this.layoutMain.Name = "layoutMain";
 			this.layoutMain.RowCount = 2;
-			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
 			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.layoutMain.Size = new System.Drawing.Size(1084, 653);
 			this.layoutMain.TabIndex = 2;
 			// 
 			// canvas
 			// 
-			this.canvas.Location = new System.Drawing.Point(3, 38);
+			this.canvas.Location = new System.Drawing.Point(3, 44);
 			this.canvas.Name = "canvas";
-			this.canvas.Size = new System.Drawing.Size(1078, 572);
+			this.canvas.Size = new System.Drawing.Size(1078, 606);
 			this.canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.canvas.TabIndex = 0;
 			this.canvas.TabStop = false;
@@ -170,10 +175,53 @@ namespace gc_proj_2 {
 			this.panelTools.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panelTools.Controls.Add(this.buttonColor);
+			this.panelTools.Controls.Add(this.buttonLine);
+			this.panelTools.Controls.Add(this.buttonPolygon);
+			this.panelTools.Controls.Add(this.buttonCircle);
 			this.panelTools.Location = new System.Drawing.Point(3, 3);
 			this.panelTools.Name = "panelTools";
-			this.panelTools.Size = new System.Drawing.Size(1078, 29);
+			this.panelTools.Size = new System.Drawing.Size(1078, 35);
 			this.panelTools.TabIndex = 1;
+			// 
+			// buttonColor
+			// 
+			this.buttonColor.Location = new System.Drawing.Point(3, 3);
+			this.buttonColor.Name = "buttonColor";
+			this.buttonColor.Size = new System.Drawing.Size(32, 32);
+			this.buttonColor.TabIndex = 0;
+			this.buttonColor.UseVisualStyleBackColor = true;
+			this.buttonColor.Click += new System.EventHandler(this.buttonColor_Click);
+			// 
+			// buttonLine
+			// 
+			this.buttonLine.BackgroundImage = global::gc_proj_2.Properties.Resources.line;
+			this.buttonLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.buttonLine.Location = new System.Drawing.Point(41, 3);
+			this.buttonLine.Name = "buttonLine";
+			this.buttonLine.Size = new System.Drawing.Size(32, 32);
+			this.buttonLine.TabIndex = 1;
+			this.buttonLine.UseVisualStyleBackColor = true;
+			// 
+			// buttonPolygon
+			// 
+			this.buttonPolygon.BackgroundImage = global::gc_proj_2.Properties.Resources.polygon;
+			this.buttonPolygon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.buttonPolygon.Location = new System.Drawing.Point(79, 3);
+			this.buttonPolygon.Name = "buttonPolygon";
+			this.buttonPolygon.Size = new System.Drawing.Size(32, 32);
+			this.buttonPolygon.TabIndex = 2;
+			this.buttonPolygon.UseVisualStyleBackColor = true;
+			// 
+			// buttonCircle
+			// 
+			this.buttonCircle.BackgroundImage = global::gc_proj_2.Properties.Resources.circle;
+			this.buttonCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.buttonCircle.Location = new System.Drawing.Point(117, 3);
+			this.buttonCircle.Name = "buttonCircle";
+			this.buttonCircle.Size = new System.Drawing.Size(32, 32);
+			this.buttonCircle.TabIndex = 3;
+			this.buttonCircle.UseVisualStyleBackColor = true;
 			// 
 			// MainWindow
 			// 
@@ -190,6 +238,7 @@ namespace gc_proj_2 {
 			this.menuStrip.PerformLayout();
 			this.layoutMain.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
+			this.panelTools.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -213,6 +262,10 @@ namespace gc_proj_2 {
 		private System.Windows.Forms.PictureBox canvas;
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
 		private System.Windows.Forms.FlowLayoutPanel panelTools;
+		private System.Windows.Forms.Button buttonColor;
+		private System.Windows.Forms.Button buttonLine;
+		private System.Windows.Forms.Button buttonPolygon;
+		private System.Windows.Forms.Button buttonCircle;
 	}
 }
 

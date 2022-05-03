@@ -21,6 +21,8 @@ namespace gc_proj_2 {
 
 		private bool projectLoaded;
 
+		private Color currentColor;
+
 		public int CanvasWidth {
 			get { return canvasWidth; }
 		}
@@ -33,8 +35,16 @@ namespace gc_proj_2 {
 			get { return projectLoaded; }
 		}
 
+		public Color CurrentColor {
+			get { return currentColor; }
+		}
+
 		public MainWindow () {
 			InitializeComponent ();
+
+			// initial settings
+			currentColor = Color.Black;
+			refreshColorButton ();
 
 			// initial project
 			objects = new Dictionary<string, IVectorObject> ();
@@ -49,11 +59,11 @@ namespace gc_proj_2 {
 			redraw ();
 		}
 
-		private Bitmap makeWhiteBitmap (int width, int height) {
+		private Bitmap makeSingleColorBitmap (int width, int height, Color color) {
 			Bitmap bitmap = new Bitmap (width, height, PixelFormat.Format24bppRgb);
 
 			using (var ctx = Graphics.FromImage (bitmap)) {
-				ctx.Clear (Color.White);
+				ctx.Clear (color);
 			}
 
 			return bitmap;
@@ -81,7 +91,7 @@ namespace gc_proj_2 {
 				canvasBitmap.Dispose ();
 			}
 
-			canvasBitmap = makeWhiteBitmap (width, height);
+			canvasBitmap = makeSingleColorBitmap (width, height, Color.White);
 			canvas.Image = canvasBitmap;
 		}
 
@@ -92,7 +102,7 @@ namespace gc_proj_2 {
 			}
 
 			// lock pixels for drawing
-			Bitmap output = makeWhiteBitmap (canvasWidth, canvasHeight);
+			Bitmap output = makeSingleColorBitmap (canvasWidth, canvasHeight, Color.White);
 			BitmapData data = output.LockBits (new Rectangle (0, 0, canvasWidth, canvasHeight), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
 
 			int size = data.Stride * output.Height;
@@ -115,6 +125,27 @@ namespace gc_proj_2 {
 
 			canvasBitmap = output;
 			canvas.Image = canvasBitmap;
+		}
+
+		private void refreshColorButton () {
+			Image oldBitmap = buttonColor.BackgroundImage;
+
+			if (oldBitmap != null) {
+				oldBitmap.Dispose ();
+			}
+
+			Image newImage = makeSingleColorBitmap (32, 32, currentColor);
+			buttonColor.BackgroundImage = newImage;
+		}
+
+		private void buttonColor_Click (object sender, EventArgs e) {
+			ColorDialog dialog = new ColorDialog ();
+			dialog.Color = currentColor;
+
+			if (dialog.ShowDialog (this) == DialogResult.OK) {
+				currentColor = dialog.Color;
+				refreshColorButton ();
+			}
 		}
 	}
 }
