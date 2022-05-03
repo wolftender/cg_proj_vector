@@ -11,5 +11,8 @@ namespace gc_proj_2 {
 
 		public void Draw (byte [] pixels, int width, int height, int stride);
 		public IVectorObject Clone ();
+
+		public bool OnCursor (Point position);
+		public void OpenEditor (MainWindow window);
 	}
 }

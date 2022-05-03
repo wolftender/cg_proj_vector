@@ -128,5 +128,19 @@ namespace gc_proj_2.Objects {
 		public IVectorObject Clone () {
 			return new VectorCircle (center, radius, color, thickness);
 		}
+
+		public bool OnCursor (Point position) {
+			double dist = Math.Sqrt ((position.X - center.X) * (position.X - center.X) + (position.Y - center.Y) * (position.Y - center.Y));
+			double margin = (thickness / 2) + 5;
+			if (dist < radius + margin && dist > radius - margin) {
+				return true;
+			}
+
+			return false;
+		}
+
+		public void OpenEditor (MainWindow window) {
+			window.CurrentTool = new Editors.CircleEditor (window, this);
+		}
 	}
 }

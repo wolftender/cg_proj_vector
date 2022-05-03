@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -20,6 +21,10 @@ namespace gc_proj_2 {
 		private int canvasHeight;
 
 		private bool projectLoaded;
+		private bool isMouseDown;
+
+		private Point lastMousePosition;
+		private ObjectEditor currentTool;
 
 		private Color currentColor;
 
@@ -39,12 +44,19 @@ namespace gc_proj_2 {
 			get { return currentColor; }
 		}
 
+		public ObjectEditor CurrentTool {
+			get { return currentTool; }
+			set { currentTool = value; }
+		}
+
 		public MainWindow () {
 			InitializeComponent ();
 
 			// initial settings
 			currentColor = Color.Black;
 			refreshColorButton ();
+
+			buttonCursor.Checked = true;
 
 			// initial project
 			objects = new Dictionary<string, IVectorObject> ();
@@ -127,6 +139,10 @@ namespace gc_proj_2 {
 			canvas.Image = canvasBitmap;
 		}
 
+		public void Redraw () {
+			redraw ();
+		}
+
 		private void refreshColorButton () {
 			Image oldBitmap = buttonColor.BackgroundImage;
 
@@ -145,6 +161,106 @@ namespace gc_proj_2 {
 			if (dialog.ShowDialog (this) == DialogResult.OK) {
 				currentColor = dialog.Color;
 				refreshColorButton ();
+
+				if (currentTool != null) {
+					currentTool.OnColorChange (currentColor);
+				}
+			}
+		}
+
+		private Point calculateRelativePosition (Point pos) {
+			int topLeftX = (canvas.Width - canvasWidth) / 2;
+			int topLeftY = (canvas.Height - canvasHeight) / 2;
+
+			Point newPos = new Point (pos.X - topLeftX, pos.Y - topLeftY);
+			return newPos;
+		}
+
+		private void canvas_MouseClick (object sender, MouseEventArgs e) {
+			// is current tool is null then this is pointer
+			if (currentTool == null) {
+				Point relativePos = calculateRelativePosition (e.Location);
+				Debug.WriteLine ("pos {0} {1}", relativePos.X, relativePos.Y);
+
+				foreach (var vectorObject in objects.Values) {
+					if (vectorObject.OnCursor (relativePos)) {
+						vectorObject.OpenEditor (this);
+						break;
+					}
+				}
+			} else {
+				currentTool.OnMouseClick (e, canvas, calculateRelativePosition (e.Location));
+			}
+		}
+
+		private void canvas_MouseDown (object sender, MouseEventArgs e) {
+			isMouseDown = true;
+
+			if (currentTool != null) {
+				currentTool.OnMouseDown (e, canvas, calculateRelativePosition (e.Location));
+			}
+		}
+
+		private void canvas_MouseUp (object sender, MouseEventArgs e) {
+			isMouseDown = false;
+
+			if (currentTool != null) {
+				currentTool.OnMouseDown (e, canvas, calculateRelativePosition (e.Location));
+			}
+		}
+
+		private void canvas_MouseMove (object sender, MouseEventArgs e) {
+			if (currentTool != null) {
+				currentTool.OnMouseMove (e, canvas, lastMousePosition, calculateRelativePosition (e.Location), isMouseDown);
+			}
+
+			lastMousePosition = e.Location;
+		}
+
+		private void buttonCursor_CheckedChanged (object sender, EventArgs e) {
+			if ((sender as CheckBox).Checked) {
+				buttonLine.Checked = false;
+				buttonPolygon.Checked = false;
+				buttonCircle.Checked = false;
+				currentTool = null;
+			}
+		}
+
+		private void buttonLine_CheckedChanged (object sender, EventArgs e) {
+			if ((sender as CheckBox).Checked) {
+				buttonCursor.Checked = false;
+				buttonPolygon.Checked = false;
+				buttonCircle.Checked = false;
+			}
+		}
+
+		private void buttonPolygon_CheckedChanged (object sender, EventArgs e) {
+			if ((sender as CheckBox).Checked) {
+				buttonLine.Checked = false;
+				buttonCursor.Checked = false;
+				buttonCircle.Checked = false;
+			}
+		}
+
+		private void buttonCircle_CheckedChanged (object sender, EventArgs e) {
+			if ((sender as CheckBox).Checked) {
+				buttonLine.Checked = false;
+				buttonPolygon.Checked = false;
+				buttonCursor.Checked = false;
+			}
+		}
+
+		public void DeleteObject (IVectorObject objectInstance) {
+			foreach (var pair in objects) {
+				if (pair.Value == objectInstance) {
+					currentTool = null;
+					objects.Remove (pair.Key);
+
+					buttonCursor.Checked = true;
+					buttonLine.Checked = false;
+					buttonPolygon.Checked = false;
+					buttonCircle.Checked = false;
+				}
 			}
 		}
 	}

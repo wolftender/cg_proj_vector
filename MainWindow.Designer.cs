@@ -38,16 +38,17 @@ namespace gc_proj_2 {
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.layoutMain = new System.Windows.Forms.TableLayoutPanel();
-			this.canvas = new System.Windows.Forms.PictureBox();
 			this.panelTools = new System.Windows.Forms.FlowLayoutPanel();
 			this.buttonColor = new System.Windows.Forms.Button();
-			this.buttonLine = new System.Windows.Forms.Button();
-			this.buttonPolygon = new System.Windows.Forms.Button();
-			this.buttonCircle = new System.Windows.Forms.Button();
+			this.buttonCursor = new System.Windows.Forms.CheckBox();
+			this.buttonLine = new System.Windows.Forms.CheckBox();
+			this.buttonPolygon = new System.Windows.Forms.CheckBox();
+			this.buttonCircle = new System.Windows.Forms.CheckBox();
+			this.canvas = new System.Windows.Forms.PictureBox();
 			this.menuStrip.SuspendLayout();
 			this.layoutMain.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
 			this.panelTools.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// statusStrip
@@ -149,26 +150,21 @@ namespace gc_proj_2 {
 			// 
 			// layoutMain
 			// 
+			this.layoutMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.layoutMain.ColumnCount = 1;
 			this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.layoutMain.Controls.Add(this.canvas, 0, 1);
 			this.layoutMain.Controls.Add(this.panelTools, 0, 0);
+			this.layoutMain.Controls.Add(this.canvas, 0, 1);
 			this.layoutMain.Location = new System.Drawing.Point(0, 27);
 			this.layoutMain.Name = "layoutMain";
 			this.layoutMain.RowCount = 2;
 			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
 			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.layoutMain.Size = new System.Drawing.Size(1084, 653);
 			this.layoutMain.TabIndex = 2;
-			// 
-			// canvas
-			// 
-			this.canvas.Location = new System.Drawing.Point(3, 44);
-			this.canvas.Name = "canvas";
-			this.canvas.Size = new System.Drawing.Size(1078, 606);
-			this.canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-			this.canvas.TabIndex = 0;
-			this.canvas.TabStop = false;
 			// 
 			// panelTools
 			// 
@@ -176,6 +172,7 @@ namespace gc_proj_2 {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelTools.Controls.Add(this.buttonColor);
+			this.panelTools.Controls.Add(this.buttonCursor);
 			this.panelTools.Controls.Add(this.buttonLine);
 			this.panelTools.Controls.Add(this.buttonPolygon);
 			this.panelTools.Controls.Add(this.buttonCircle);
@@ -193,35 +190,70 @@ namespace gc_proj_2 {
 			this.buttonColor.UseVisualStyleBackColor = true;
 			this.buttonColor.Click += new System.EventHandler(this.buttonColor_Click);
 			// 
+			// buttonCursor
+			// 
+			this.buttonCursor.Appearance = System.Windows.Forms.Appearance.Button;
+			this.buttonCursor.BackgroundImage = global::gc_proj_2.Properties.Resources.cursor;
+			this.buttonCursor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.buttonCursor.Location = new System.Drawing.Point(41, 3);
+			this.buttonCursor.Name = "buttonCursor";
+			this.buttonCursor.Size = new System.Drawing.Size(32, 32);
+			this.buttonCursor.TabIndex = 4;
+			this.buttonCursor.UseVisualStyleBackColor = true;
+			this.buttonCursor.CheckedChanged += new System.EventHandler(this.buttonCursor_CheckedChanged);
+			// 
 			// buttonLine
 			// 
+			this.buttonLine.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonLine.BackgroundImage = global::gc_proj_2.Properties.Resources.line;
 			this.buttonLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonLine.Location = new System.Drawing.Point(41, 3);
+			this.buttonLine.Location = new System.Drawing.Point(79, 3);
 			this.buttonLine.Name = "buttonLine";
 			this.buttonLine.Size = new System.Drawing.Size(32, 32);
 			this.buttonLine.TabIndex = 1;
 			this.buttonLine.UseVisualStyleBackColor = true;
+			this.buttonLine.CheckedChanged += new System.EventHandler(this.buttonLine_CheckedChanged);
 			// 
 			// buttonPolygon
 			// 
+			this.buttonPolygon.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonPolygon.BackgroundImage = global::gc_proj_2.Properties.Resources.polygon;
 			this.buttonPolygon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonPolygon.Location = new System.Drawing.Point(79, 3);
+			this.buttonPolygon.Location = new System.Drawing.Point(117, 3);
 			this.buttonPolygon.Name = "buttonPolygon";
 			this.buttonPolygon.Size = new System.Drawing.Size(32, 32);
 			this.buttonPolygon.TabIndex = 2;
 			this.buttonPolygon.UseVisualStyleBackColor = true;
+			this.buttonPolygon.CheckedChanged += new System.EventHandler(this.buttonPolygon_CheckedChanged);
 			// 
 			// buttonCircle
 			// 
+			this.buttonCircle.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonCircle.BackgroundImage = global::gc_proj_2.Properties.Resources.circle;
 			this.buttonCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonCircle.Location = new System.Drawing.Point(117, 3);
+			this.buttonCircle.Location = new System.Drawing.Point(155, 3);
 			this.buttonCircle.Name = "buttonCircle";
 			this.buttonCircle.Size = new System.Drawing.Size(32, 32);
 			this.buttonCircle.TabIndex = 3;
 			this.buttonCircle.UseVisualStyleBackColor = true;
+			this.buttonCircle.CheckedChanged += new System.EventHandler(this.buttonCircle_CheckedChanged);
+			// 
+			// canvas
+			// 
+			this.canvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaption;
+			this.canvas.Location = new System.Drawing.Point(3, 44);
+			this.canvas.Name = "canvas";
+			this.canvas.Size = new System.Drawing.Size(1078, 606);
+			this.canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this.canvas.TabIndex = 2;
+			this.canvas.TabStop = false;
+			this.canvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseClick);
+			this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
+			this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
+			this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
 			// 
 			// MainWindow
 			// 
@@ -237,8 +269,8 @@ namespace gc_proj_2 {
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.layoutMain.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
 			this.panelTools.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -259,13 +291,14 @@ namespace gc_proj_2 {
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private System.Windows.Forms.TableLayoutPanel layoutMain;
-		private System.Windows.Forms.PictureBox canvas;
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
 		private System.Windows.Forms.FlowLayoutPanel panelTools;
 		private System.Windows.Forms.Button buttonColor;
-		private System.Windows.Forms.Button buttonLine;
-		private System.Windows.Forms.Button buttonPolygon;
-		private System.Windows.Forms.Button buttonCircle;
+		private System.Windows.Forms.CheckBox buttonLine;
+		private System.Windows.Forms.CheckBox buttonPolygon;
+		private System.Windows.Forms.CheckBox buttonCircle;
+		private System.Windows.Forms.PictureBox canvas;
+		private System.Windows.Forms.CheckBox buttonCursor;
 	}
 }
 

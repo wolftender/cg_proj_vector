@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -150,6 +151,25 @@ namespace gc_proj_2.Objects {
 					x += m;
 				}
 			}
+		}
+
+		public bool OnCursor (Point position) {
+			// collision code with the line
+			float minX = Math.Min (p1.X, p2.X), maxX = Math.Max (p1.X, p2.X);
+			float minY = Math.Min (p1.Y, p2.Y), maxY = Math.Max (p1.Y, p2.Y);
+
+			if (position.X > minX && position.X < maxX && position.Y > minY && position.Y < maxY) {
+				double dist = Math.Abs ((p2.X - p1.X) * (p1.Y - position.Y) - (p1.X - position.X) * (p2.Y - p1.Y));
+				dist = dist / Math.Sqrt ((p2.X - p1.X) * (p2.X - p1.X) + (p2.Y - p1.Y) * (p2.Y - p1.Y));
+
+				return (dist < thickness + 5);
+			}
+
+			return false;
+		}
+
+		public void OpenEditor (MainWindow window) {
+			window.CurrentTool = new Editors.LineEditor (window, this);
 		}
 	}
 }
