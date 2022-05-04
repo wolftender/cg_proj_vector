@@ -11,6 +11,7 @@ namespace gc_proj_2.Editors {
 	class CircleEditor : ObjectEditor {
 		private VectorCircle circle;
 		private VectorCircle markerCenter;
+		private bool draggingCenter;
 
 		public CircleEditor (MainWindow window, VectorCircle circle) : base (window) {
 			this.circle = circle;
@@ -32,12 +33,30 @@ namespace gc_proj_2.Editors {
 		}
 
 		public override void OnMouseDown (MouseEventArgs e, PictureBox canvas, Point position) {
+			if (markerCenter.OnCursor (position)) {
+				draggingCenter = true;
+			}
 		}
 
 		public override void OnMouseMove (MouseEventArgs e, PictureBox canvas, Point lastPosition, Point position, bool isMouseDown) {
+			Point newPos = new Point (
+				(int) Math.Max (0, Math.Min (MainWindow.CanvasWidth - 1, position.X)),
+				(int) Math.Max (0, Math.Min (MainWindow.CanvasHeight - 1, position.Y))
+			);
+
+			if (isMouseDown) {
+				if (draggingCenter) {
+					circle.Center = newPos;
+					markerCenter.Center = newPos;
+					MainWindow.Redraw ();
+				}
+			} else {
+				draggingCenter = false;
+			}
 		}
 
 		public override void OnMouseUp (MouseEventArgs e, PictureBox canvas, Point position) {
+			draggingCenter = false;
 		}
 	}
 }
