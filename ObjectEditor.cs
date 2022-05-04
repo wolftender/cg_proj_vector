@@ -25,5 +25,7 @@ namespace gc_proj_2 {
 		public virtual void OnMouseDown (MouseEventArgs e, PictureBox canvas, Point position) { }
 		public virtual void OnMouseMove (MouseEventArgs e, PictureBox canvas, Point lastPosition, Point position, bool isMouseDown) { }
 		public virtual void OnMouseUp (MouseEventArgs e, PictureBox canvas, Point position) { }
+		public virtual void OnKeyPress (KeyPressEventArgs e) { }
+		public virtual void OnKeyDown (KeyEventArgs e) { }
 	}
 }

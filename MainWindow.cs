@@ -93,6 +93,7 @@ namespace gc_proj_2 {
 			tempObjects = new List<IVectorObject> ();
 
 			InitializeComponent ();
+			KeyPreview = true;
 
 			// initial settings
 			currentColor = Color.Black;
@@ -294,6 +295,22 @@ namespace gc_proj_2 {
 
 					CurrentTool = null;
 				}
+			}
+		}
+
+		private void MainWindow_KeyPress (object sender, KeyPressEventArgs e) {
+			if (currentTool != null) {
+				currentTool.OnKeyPress (e);
+			}
+		}
+
+		private void MainWindow_KeyDown (object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.Escape) {
+				CurrentTool = null;
+			}
+
+			if (currentTool != null) {
+				currentTool.OnKeyDown (e);
 			}
 		}
 	}

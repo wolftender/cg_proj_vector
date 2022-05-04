@@ -70,5 +70,15 @@ namespace gc_proj_2.Editors {
 			draggingStart = false;
 			draggingEnd = false;
 		}
+
+		public override void OnKeyDown (KeyEventArgs e) { 
+			if (e.KeyCode == Keys.Add || e.KeyCode == Keys.Oemplus) {
+				line.Thickness++;
+				MainWindow.Redraw ();
+			} else if (e.KeyCode == Keys.Subtract || e.KeyCode == Keys.OemMinus) {
+				line.Thickness--;
+				MainWindow.Redraw ();
+			}
+		}
 	}
 }

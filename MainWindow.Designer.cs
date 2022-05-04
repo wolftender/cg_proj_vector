@@ -53,21 +53,25 @@ namespace gc_proj_2 {
 			// 
 			// statusStrip
 			// 
-			this.statusStrip.Location = new System.Drawing.Point(0, 683);
+			this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.statusStrip.Location = new System.Drawing.Point(0, 918);
 			this.statusStrip.Name = "statusStrip";
-			this.statusStrip.Size = new System.Drawing.Size(1084, 22);
+			this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+			this.statusStrip.Size = new System.Drawing.Size(1239, 22);
 			this.statusStrip.TabIndex = 0;
 			this.statusStrip.Text = "statusStrip1";
 			// 
 			// menuStrip
 			// 
+			this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.helpToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(1084, 24);
+			this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+			this.menuStrip.Size = new System.Drawing.Size(1239, 30);
 			this.menuStrip.TabIndex = 1;
 			this.menuStrip.Text = "menuStrip1";
 			// 
@@ -81,43 +85,43 @@ namespace gc_proj_2 {
             this.exitToolStripMenuItem,
             this.newToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
 			this.fileToolStripMenuItem.Text = "File";
 			// 
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
 			this.openToolStripMenuItem.Text = "Open";
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
 			this.saveToolStripMenuItem.Text = "Save";
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
 			this.saveAsToolStripMenuItem.Text = "Save as...";
 			// 
 			// exportAsToolStripMenuItem
 			// 
 			this.exportAsToolStripMenuItem.Name = "exportAsToolStripMenuItem";
-			this.exportAsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.exportAsToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
 			this.exportAsToolStripMenuItem.Text = "Export as...";
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
 			this.exitToolStripMenuItem.Text = "Exit";
 			// 
 			// newToolStripMenuItem
 			// 
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
 			this.newToolStripMenuItem.Text = "New";
 			// 
 			// editToolStripMenuItem
@@ -125,13 +129,13 @@ namespace gc_proj_2 {
 			this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.redoToolStripMenuItem});
 			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+			this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
 			this.editToolStripMenuItem.Text = "Edit";
 			// 
 			// redoToolStripMenuItem
 			// 
 			this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-			this.redoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+			this.redoToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
 			this.redoToolStripMenuItem.Text = "Redo";
 			// 
 			// helpToolStripMenuItem
@@ -139,13 +143,13 @@ namespace gc_proj_2 {
 			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
 			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
 			this.helpToolStripMenuItem.Text = "Help";
 			// 
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
 			this.aboutToolStripMenuItem.Text = "About...";
 			// 
 			// layoutMain
@@ -157,13 +161,14 @@ namespace gc_proj_2 {
 			this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.layoutMain.Controls.Add(this.panelTools, 0, 0);
 			this.layoutMain.Controls.Add(this.canvas, 0, 1);
-			this.layoutMain.Location = new System.Drawing.Point(0, 27);
+			this.layoutMain.Location = new System.Drawing.Point(0, 36);
+			this.layoutMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.layoutMain.Name = "layoutMain";
 			this.layoutMain.RowCount = 2;
-			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
 			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.layoutMain.Size = new System.Drawing.Size(1084, 653);
+			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+			this.layoutMain.Size = new System.Drawing.Size(1239, 871);
 			this.layoutMain.TabIndex = 2;
 			// 
 			// panelTools
@@ -176,16 +181,18 @@ namespace gc_proj_2 {
 			this.panelTools.Controls.Add(this.buttonLine);
 			this.panelTools.Controls.Add(this.buttonPolygon);
 			this.panelTools.Controls.Add(this.buttonCircle);
-			this.panelTools.Location = new System.Drawing.Point(3, 3);
+			this.panelTools.Location = new System.Drawing.Point(3, 4);
+			this.panelTools.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panelTools.Name = "panelTools";
-			this.panelTools.Size = new System.Drawing.Size(1078, 35);
+			this.panelTools.Size = new System.Drawing.Size(1233, 47);
 			this.panelTools.TabIndex = 1;
 			// 
 			// buttonColor
 			// 
-			this.buttonColor.Location = new System.Drawing.Point(3, 3);
+			this.buttonColor.Location = new System.Drawing.Point(3, 4);
+			this.buttonColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.buttonColor.Name = "buttonColor";
-			this.buttonColor.Size = new System.Drawing.Size(32, 32);
+			this.buttonColor.Size = new System.Drawing.Size(37, 43);
 			this.buttonColor.TabIndex = 0;
 			this.buttonColor.UseVisualStyleBackColor = true;
 			this.buttonColor.Click += new System.EventHandler(this.buttonColor_Click);
@@ -195,9 +202,10 @@ namespace gc_proj_2 {
 			this.buttonCursor.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonCursor.BackgroundImage = global::gc_proj_2.Properties.Resources.cursor;
 			this.buttonCursor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonCursor.Location = new System.Drawing.Point(41, 3);
+			this.buttonCursor.Location = new System.Drawing.Point(46, 4);
+			this.buttonCursor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.buttonCursor.Name = "buttonCursor";
-			this.buttonCursor.Size = new System.Drawing.Size(32, 32);
+			this.buttonCursor.Size = new System.Drawing.Size(37, 43);
 			this.buttonCursor.TabIndex = 4;
 			this.buttonCursor.UseVisualStyleBackColor = true;
 			this.buttonCursor.CheckedChanged += new System.EventHandler(this.buttonCursor_CheckedChanged);
@@ -207,9 +215,10 @@ namespace gc_proj_2 {
 			this.buttonLine.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonLine.BackgroundImage = global::gc_proj_2.Properties.Resources.line;
 			this.buttonLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonLine.Location = new System.Drawing.Point(79, 3);
+			this.buttonLine.Location = new System.Drawing.Point(89, 4);
+			this.buttonLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.buttonLine.Name = "buttonLine";
-			this.buttonLine.Size = new System.Drawing.Size(32, 32);
+			this.buttonLine.Size = new System.Drawing.Size(37, 43);
 			this.buttonLine.TabIndex = 1;
 			this.buttonLine.UseVisualStyleBackColor = true;
 			this.buttonLine.CheckedChanged += new System.EventHandler(this.buttonLine_CheckedChanged);
@@ -219,9 +228,10 @@ namespace gc_proj_2 {
 			this.buttonPolygon.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonPolygon.BackgroundImage = global::gc_proj_2.Properties.Resources.polygon;
 			this.buttonPolygon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonPolygon.Location = new System.Drawing.Point(117, 3);
+			this.buttonPolygon.Location = new System.Drawing.Point(132, 4);
+			this.buttonPolygon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.buttonPolygon.Name = "buttonPolygon";
-			this.buttonPolygon.Size = new System.Drawing.Size(32, 32);
+			this.buttonPolygon.Size = new System.Drawing.Size(37, 43);
 			this.buttonPolygon.TabIndex = 2;
 			this.buttonPolygon.UseVisualStyleBackColor = true;
 			this.buttonPolygon.CheckedChanged += new System.EventHandler(this.buttonPolygon_CheckedChanged);
@@ -231,9 +241,10 @@ namespace gc_proj_2 {
 			this.buttonCircle.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonCircle.BackgroundImage = global::gc_proj_2.Properties.Resources.circle;
 			this.buttonCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonCircle.Location = new System.Drawing.Point(155, 3);
+			this.buttonCircle.Location = new System.Drawing.Point(175, 4);
+			this.buttonCircle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.buttonCircle.Name = "buttonCircle";
-			this.buttonCircle.Size = new System.Drawing.Size(32, 32);
+			this.buttonCircle.Size = new System.Drawing.Size(37, 43);
 			this.buttonCircle.TabIndex = 3;
 			this.buttonCircle.UseVisualStyleBackColor = true;
 			this.buttonCircle.CheckedChanged += new System.EventHandler(this.buttonCircle_CheckedChanged);
@@ -244,9 +255,10 @@ namespace gc_proj_2 {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaption;
-			this.canvas.Location = new System.Drawing.Point(3, 44);
+			this.canvas.Location = new System.Drawing.Point(3, 59);
+			this.canvas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.canvas.Name = "canvas";
-			this.canvas.Size = new System.Drawing.Size(1078, 606);
+			this.canvas.Size = new System.Drawing.Size(1233, 808);
 			this.canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.canvas.TabIndex = 2;
 			this.canvas.TabStop = false;
@@ -257,15 +269,18 @@ namespace gc_proj_2 {
 			// 
 			// MainWindow
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1084, 705);
+			this.ClientSize = new System.Drawing.Size(1239, 940);
 			this.Controls.Add(this.layoutMain);
 			this.Controls.Add(this.statusStrip);
 			this.Controls.Add(this.menuStrip);
 			this.MainMenuStrip = this.menuStrip;
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "MainWindow";
 			this.Text = "vector graphics editor v0.1";
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
+			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainWindow_KeyPress);
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
 			this.layoutMain.ResumeLayout(false);

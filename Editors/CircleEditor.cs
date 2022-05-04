@@ -58,5 +58,15 @@ namespace gc_proj_2.Editors {
 		public override void OnMouseUp (MouseEventArgs e, PictureBox canvas, Point position) {
 			draggingCenter = false;
 		}
+
+		public override void OnKeyDown (KeyEventArgs e) {
+			if (e.KeyCode == Keys.Add || e.KeyCode == Keys.Oemplus) {
+				circle.Thickness++;
+				MainWindow.Redraw ();
+			} else if (e.KeyCode == Keys.Subtract || e.KeyCode == Keys.OemMinus) {
+				circle.Thickness--;
+				MainWindow.Redraw ();
+			}
+		}
 	}
 }
