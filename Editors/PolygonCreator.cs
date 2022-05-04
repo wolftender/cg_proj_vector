@@ -34,7 +34,7 @@ namespace gc_proj_2.Editors {
 			if (e.KeyCode == Keys.Enter) {
 				VectorPolygon polygon = new VectorPolygon (points.ToArray (), MainWindow.CurrentColor);
 				MainWindow.AddObject ("polygon", polygon);
-				MainWindow.CurrentTool = null;
+				MainWindow.CurrentTool = new PolygonEditor (MainWindow, polygon);
 			}
 		}
 	}

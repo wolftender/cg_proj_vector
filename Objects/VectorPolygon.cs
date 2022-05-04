@@ -47,11 +47,17 @@ namespace gc_proj_2.Objects {
 		}
 
 		public bool OnCursor (Point position) {
-			throw new NotImplementedException ();
+			foreach (var edge in edges) {
+				if (edge.OnCursor (position)) {
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		public void OpenEditor (MainWindow window) {
-			throw new NotImplementedException ();
+			window.CurrentTool = new Editors.PolygonEditor (window, this);
 		}
 	}
 }

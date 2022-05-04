@@ -73,7 +73,8 @@ namespace gc_proj_2.Objects {
 			return new VectorLine (p1, p2, color);
 		}
 
-		private void setPixel (byte [] pixels, int cx, int cy, int scanlineWidth, int channels, Color color) {
+		private void setPixel (byte [] pixels, int cx, int cy, int w, int h, int scanlineWidth, int channels, Color color) {
+			if (cx < 0 || cx >= w || cy < 0 || cy >= h) return;
 			pixels [cy * scanlineWidth + cx * channels + 0] = color.B;
 			pixels [cy * scanlineWidth + cx * channels + 1] = color.G;
 			pixels [cy * scanlineWidth + cx * channels + 2] = color.R;
@@ -113,7 +114,7 @@ namespace gc_proj_2.Objects {
 					cx = x;
 					cy = (int) y;
 
-					setPixel (pixels, cx, cy, scanlineWidth, channels, color);
+					setPixel (pixels, cx, cy, width, height, scanlineWidth, channels, color);
 
 					// pixel copying
 					if (thickness > 1) {
@@ -121,8 +122,7 @@ namespace gc_proj_2.Objects {
 						int max = (int) Math.Ceiling ((thickness - 1) / 2.0);
 
 						for (int i = -min; i < max; ++i) {
-							if (cy + i >= height || cy + i < 0) continue;
-							setPixel (pixels, cx, cy + i, scanlineWidth, channels, color);
+							setPixel (pixels, cx, cy + i, width, height, scanlineWidth, channels, color);
 						}
 					}
 
@@ -149,7 +149,7 @@ namespace gc_proj_2.Objects {
 					cx = (int) x;
 					cy = y;
 
-					setPixel (pixels, cx, cy, scanlineWidth, channels, color);
+					setPixel (pixels, cx, cy, width, height, scanlineWidth, channels, color);
 
 					// pixel copying
 					if (thickness > 1) {
@@ -157,8 +157,7 @@ namespace gc_proj_2.Objects {
 						int max = (int) Math.Ceiling ((thickness - 1) / 2.0);
 
 						for (int i = -min; i < max; ++i) {
-							if (cx + i >= width || cx + i < 0) continue;
-							setPixel (pixels, cx + i, cy, scanlineWidth, channels, color);
+							setPixel (pixels, cx + i, cy, width, height, scanlineWidth, channels, color);
 						}
 					}
 
@@ -169,8 +168,8 @@ namespace gc_proj_2.Objects {
 
 		public bool OnCursor (Point position) {
 			// collision code with the line
-			float minX = Math.Min (p1.X, p2.X), maxX = Math.Max (p1.X, p2.X);
-			float minY = Math.Min (p1.Y, p2.Y), maxY = Math.Max (p1.Y, p2.Y);
+			float minX = Math.Min (p1.X, p2.X) - 5, maxX = Math.Max (p1.X, p2.X) + 5;
+			float minY = Math.Min (p1.Y, p2.Y) - 5, maxY = Math.Max (p1.Y, p2.Y) + 5;
 
 			if (position.X > minX && position.X < maxX && position.Y > minY && position.Y < maxY) {
 				double dist = Math.Abs ((p2.X - p1.X) * (p1.Y - position.Y) - (p1.X - position.X) * (p2.Y - p1.Y));
