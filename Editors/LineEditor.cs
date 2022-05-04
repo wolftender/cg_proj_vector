@@ -91,6 +91,8 @@ namespace gc_proj_2.Editors {
 			} else if (e.KeyCode == Keys.Subtract || e.KeyCode == Keys.OemMinus) {
 				line.Thickness--;
 				MainWindow.Redraw ();
+			} else if (e.KeyCode == Keys.Delete) {
+				MainWindow.DeleteObject (line);
 			}
 		}
 	}

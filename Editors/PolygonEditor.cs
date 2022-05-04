@@ -119,6 +119,8 @@ namespace gc_proj_2.Editors {
 					edge.Thickness--;
 				}
 				MainWindow.Redraw ();
+			} else if (e.KeyCode == Keys.Delete) {
+				MainWindow.DeleteObject (polygon);
 			}
 		}
 	}
