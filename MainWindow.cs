@@ -67,7 +67,7 @@ namespace gc_proj_2 {
 		private void updateToolbar () {
 			buttonCursor.Checked = (currentTool == null);
 			buttonLine.Checked = (currentTool is Editors.LineCreator);
-			buttonPolygon.Checked = false;
+			buttonPolygon.Checked = (CurrentTool is Editors.PolygonCreator);
 			buttonCircle.Checked = (currentTool is Editors.CircleCreator);
 		}
 
@@ -278,6 +278,7 @@ namespace gc_proj_2 {
 
 		private void buttonPolygon_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
+				CurrentTool = new Editors.PolygonCreator (this);
 			}
 		}
 
