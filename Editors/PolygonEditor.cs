@@ -19,6 +19,7 @@ namespace gc_proj_2.Editors {
 
 		private int draggingIndex = -1;
 		private bool dragging = false;
+		private bool canSwitchToEdge = false;
 
 		public PolygonEditor (MainWindow window, VectorPolygon polygon) : base (window) {
 			this.polygon = polygon;
@@ -58,6 +59,14 @@ namespace gc_proj_2.Editors {
 						return;
 					}
 				}
+
+				if (canSwitchToEdge) {
+					foreach (var edge in polygon.Edges) {
+						if (edge.OnCursor (position)) {
+							MainWindow.CurrentTool = new LineEditor (MainWindow, edge, false);
+						}
+					}
+				}
 			}
 		}
 
@@ -70,8 +79,6 @@ namespace gc_proj_2.Editors {
 
 						int dx = newPos.X - oldPos.X;
 						int dy = newPos.Y - oldPos.Y;
-
-						Debug.WriteLine ("{0} {1}", dx, dy);
 
 						middlePoint.Center = new Point (oldPos.X + dx, oldPos.Y + dy);
 
@@ -89,6 +96,29 @@ namespace gc_proj_2.Editors {
 				}
 			} else {
 				dragging = false;
+				canSwitchToEdge = true;
+			}
+		}
+
+		public override void OnColorChange (Color newColor) {
+			foreach (var edge in polygon.Edges) {
+				edge.Color = newColor;
+			}
+
+			MainWindow.Redraw ();
+		}
+
+		public override void OnKeyDown (KeyEventArgs e) {
+			if (e.KeyCode == Keys.Add || e.KeyCode == Keys.Oemplus) {
+				foreach (var edge in polygon.Edges) {
+					edge.Thickness++;
+				}
+				MainWindow.Redraw ();
+			} else if (e.KeyCode == Keys.Subtract || e.KeyCode == Keys.OemMinus) {
+				foreach (var edge in polygon.Edges) {
+					edge.Thickness--;
+				}
+				MainWindow.Redraw ();
 			}
 		}
 	}

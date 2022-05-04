@@ -11,13 +11,24 @@ namespace gc_proj_2.Editors {
 	public class LineEditor : ObjectEditor {
 		private VectorLine line;
 		private VectorCircle markerStart, markerEnd;
-		private bool draggingStart, draggingEnd;
+		private bool draggingStart, draggingEnd, canMove;
 
 		public LineEditor (MainWindow window, VectorLine line) : base (window) {
 			this.line = line;
 
 			markerStart = new VectorCircle (line.P1, 7, Color.Red, 4);
 			markerEnd = new VectorCircle (line.P2, 7, Color.Red, 4);
+
+			canMove = true;
+		}
+
+		public LineEditor (MainWindow window, VectorLine line, bool canMove) : base (window) {
+			this.line = line;
+
+			markerStart = new VectorCircle (line.P1, 7, Color.Red, 4);
+			markerEnd = new VectorCircle (line.P2, 7, Color.Red, 4);
+
+			this.canMove = canMove;
 		}
 
 		public override string Name => "Line Editor";
@@ -37,10 +48,12 @@ namespace gc_proj_2.Editors {
 		}
 
 		public override void OnMouseDown (MouseEventArgs e, PictureBox canvas, Point position) {
-			if (markerStart.OnCursor (position)) {
-				draggingStart = true;
-			} else if (markerEnd.OnCursor (position)) {
-				draggingEnd = true;
+			if (canMove) {
+				if (markerStart.OnCursor (position)) {
+					draggingStart = true;
+				} else if (markerEnd.OnCursor (position)) {
+					draggingEnd = true;
+				}
 			}
 		}
 
