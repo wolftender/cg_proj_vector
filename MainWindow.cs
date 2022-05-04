@@ -5,17 +5,31 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 // DDA, Midpoint Circle (v2. - additions only), Pixel Copying, Gupta-Sproull 
 namespace gc_proj_2 {
 	public partial class MainWindow : Form {
-		private Dictionary<string, IVectorObject> objects;
-		private List<IVectorObject> tempObjects;
+		public class ProjectDataObject {
+			public string Name { get; set; }
+			public VectorObject Instance { get; set; }
+		}
+
+		public class ProjectData {
+			public int Width { get; set; }
+			public int Height { get; set; }
+			public List<ProjectDataObject> Objects { get; set; }
+		}
+
+		private Dictionary<string, VectorObject> objects;
+		private List<VectorObject> tempObjects;
 
 		private Bitmap canvasBitmap;
 
@@ -71,11 +85,11 @@ namespace gc_proj_2 {
 			buttonCircle.Checked = (currentTool is Editors.CircleCreator);
 		}
 
-		public List<IVectorObject> TempObjects {
+		public List<VectorObject> TempObjects {
 			get { return tempObjects; }
 		}
 
-		public void AddObject (string name, IVectorObject vectorObject) {
+		public void AddObject (string name, VectorObject vectorObject) {
 			string newName = name;
 			if (objects.ContainsKey (newName)) {
 				int i = 0;
@@ -89,8 +103,8 @@ namespace gc_proj_2 {
 		}
 
 		public MainWindow () {
-			objects = new Dictionary<string, IVectorObject> ();
-			tempObjects = new List<IVectorObject> ();
+			objects = new Dictionary<string, VectorObject> ();
+			tempObjects = new List<VectorObject> ();
 
 			InitializeComponent ();
 			KeyPreview = true;
@@ -123,11 +137,11 @@ namespace gc_proj_2 {
 			return bitmap;
 		}
 
-		public void NewProject (int width, int height) {
+		public bool NewProject (int width, int height) {
 			if (ProjectLoaded) {
 				if (MessageBox.Show (this, "are you sure that you want to start a new project?", "new project", 
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) {
-					return;
+					return false;
 				}
 			}
 
@@ -147,6 +161,8 @@ namespace gc_proj_2 {
 
 			canvasBitmap = makeSingleColorBitmap (width, height, Color.White);
 			canvas.Image = canvasBitmap;
+
+			return true;
 		}
 
 		private void redraw () {
@@ -304,7 +320,7 @@ namespace gc_proj_2 {
 			ActiveControl = null;
 		}
 
-		public void DeleteObject (IVectorObject objectInstance) {
+		public void DeleteObject (VectorObject objectInstance) {
 			foreach (var pair in objects) {
 				if (pair.Value == objectInstance) {
 					currentTool = null;
@@ -339,21 +355,88 @@ namespace gc_proj_2 {
 			}
 		}
 
+		private string getSerializedProject () {
+			XmlSerializer serializer = new XmlSerializer (typeof (ProjectData), new Type [] {
+				typeof (Objects.VectorCircle), typeof (Objects.VectorLine), typeof (Objects.VectorPolygon)
+			});
+			ProjectData data = new ProjectData ();
+
+			data.Width = canvasWidth;
+			data.Height = canvasHeight;
+			data.Objects = new List<ProjectDataObject> ();
+
+			foreach (var pair in objects) {
+				data.Objects.Add (new ProjectDataObject () {
+					Instance = pair.Value,
+					Name = pair.Key
+				});
+			}
+
+			string serialized;
+			using (var sww = new StringWriter ()) {
+				using (var xmlWriter = new XmlTextWriter (sww) { Formatting = Formatting.Indented }) {
+					serializer.Serialize (xmlWriter, data);
+					serialized = sww.ToString ();
+				}
+			}
+
+			return serialized;
+		}
+
+		private void deserializeProject (string serialized) {
+			XmlSerializer serializer = new XmlSerializer (typeof (ProjectData), new Type [] {
+				typeof (Objects.VectorCircle), typeof (Objects.VectorLine), typeof (Objects.VectorPolygon)
+			});
+
+			ProjectData data;
+			using (var reader = new StringReader (serialized)) {
+				data = (ProjectData) serializer.Deserialize (reader);
+			}
+
+			if (NewProject (data.Width, data.Height)) {
+				foreach (var pair in data.Objects) {
+					objects.Add (pair.Name, pair.Instance);
+				}
+			}
+
+			redraw ();
+		}
+
 		private void openToolStripMenuItem_Click (object sender, EventArgs e) {
+			OpenFileDialog openFileDialog = new OpenFileDialog ();
+			openFileDialog.DefaultExt = "cgv";
+			openFileDialog.Filter = "CG Project (*.cgv)|*.cgv";
 
+			if (openFileDialog.ShowDialog () == DialogResult.OK) {
+				try {
+					string filename = openFileDialog.FileName;
+					string serialized = File.ReadAllText (filename);
+
+					deserializeProject (serialized);
+				} catch (Exception exception) {
+					MessageBox.Show ("failed to open specified file, error:\n" + exception.Message, "file error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 		}
 
-		private void saveToolStripMenuItem_Click (object sender, EventArgs e) {
-
-		}
+		private void saveToolStripMenuItem_Click (object sender, EventArgs e) { }
 
 		private void saveAsToolStripMenuItem_Click (object sender, EventArgs e) {
+			SaveFileDialog saveFileDialog = new SaveFileDialog ();
+			saveFileDialog.DefaultExt = "cgv";
 
+			if (saveFileDialog.ShowDialog () == DialogResult.OK) {
+				try {
+					File.WriteAllText (saveFileDialog.FileName, getSerializedProject ());
+				} catch (Exception exception) {
+					MessageBox.Show ("failed to save filtered image to file, error:\n" + exception.Message, "save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 		}
 
 		private void exportAsToolStripMenuItem_Click (object sender, EventArgs e) {
 			SaveFileDialog saveFileDialog = new SaveFileDialog ();
-			saveFileDialog.DefaultExt = "png";
+			saveFileDialog.DefaultExt = "png"; 
 
 			if (saveFileDialog.ShowDialog (this) == DialogResult.OK) {
 				try {

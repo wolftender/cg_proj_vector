@@ -5,9 +5,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace gc_proj_2.Objects {
-	public class VectorLine : IVectorObject {
+	public class VectorLine : VectorObject {
 		private Point p1;
 		private Point p2;
 		private Color color;
@@ -24,9 +25,16 @@ namespace gc_proj_2.Objects {
 			set { p2 = value; }
 		}
 
+		[XmlIgnore]
 		public Color Color {
 			get { return color; }
 			set { color = value; }
+		}
+
+		[XmlElement ("Color")]
+		public int ColorArgb {
+			get { return Color.ToArgb (); }
+			set { Color = Color.FromArgb (value); }
 		}
 
 		public int Thickness {
@@ -41,7 +49,7 @@ namespace gc_proj_2.Objects {
 			set { dotted = value; }
 		}
 
-		public string Name => "Line";
+		public override string Name => "Line";
 
 		public VectorLine () {
 			p1 = new Point (0, 0);
@@ -69,7 +77,7 @@ namespace gc_proj_2.Objects {
 			this.Thickness = thickness;
 		}
 
-		public IVectorObject Clone () {
+		public override VectorObject Clone () {
 			return new VectorLine (p1, p2, color);
 		}
 
@@ -80,7 +88,7 @@ namespace gc_proj_2.Objects {
 			pixels [cy * scanlineWidth + cx * channels + 2] = color.R;
 		}
 
-		public void Draw (byte [] pixels, int width, int height, int stride) {
+		public override void Draw (byte [] pixels, int width, int height, int stride) {
 			// additional data needed for setting correct pixel in the byte array
 			int channels = stride / width;
 			int padding = (4 - (width * channels % 4)) % 4;
@@ -166,7 +174,7 @@ namespace gc_proj_2.Objects {
 			}
 		}
 
-		public bool OnCursor (Point position) {
+		public override bool OnCursor (Point position) {
 			// collision code with the line
 			float minX = Math.Min (p1.X, p2.X) - 5, maxX = Math.Max (p1.X, p2.X) + 5;
 			float minY = Math.Min (p1.Y, p2.Y) - 5, maxY = Math.Max (p1.Y, p2.Y) + 5;
@@ -181,7 +189,7 @@ namespace gc_proj_2.Objects {
 			return false;
 		}
 
-		public void OpenEditor (MainWindow window) {
+		public override void OpenEditor (MainWindow window) {
 			window.CurrentTool = new Editors.LineEditor (window, this);
 		}
 	}

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Xml.Serialization;
 
 namespace gc_proj_2.Objects {
-	public class VectorCircle : IVectorObject {
+	public class VectorCircle : VectorObject {
 		private Point center;
 		private Color color;
 
@@ -18,9 +19,16 @@ namespace gc_proj_2.Objects {
 			set { center = value; }
 		}
 
+		[XmlIgnore]
 		public Color Color {
 			get { return color; }
 			set { color = value; }
+		}
+
+		[XmlElement ("Color")]
+		public int ColorArgb {
+			get { return Color.ToArgb (); }
+			set { Color = Color.FromArgb (value); }
 		}
 
 		public int Radius {
@@ -37,7 +45,12 @@ namespace gc_proj_2.Objects {
 			}
 		}
 
-		public string Name => "Circle";
+		public override string Name => "Circle";
+
+		public VectorCircle () {
+			this.center = new Point (0, 0);
+			this.radius = 1;
+		}
 
 		public VectorCircle (Point center, int radius) {
 			this.center = center;
@@ -96,7 +109,7 @@ namespace gc_proj_2.Objects {
 			}
 		}
 
-		public void Draw (byte [] pixels, int width, int height, int stride) {
+		public override void Draw (byte [] pixels, int width, int height, int stride) {
 			// additional data needed for setting correct pixel in the byte array
 			int channels = stride / width;
 			int padding = (4 - (width * channels % 4)) % 4;
@@ -125,11 +138,11 @@ namespace gc_proj_2.Objects {
 			}
 		}
 
-		public IVectorObject Clone () {
+		public override VectorObject Clone () {
 			return new VectorCircle (center, radius, color, thickness);
 		}
 
-		public bool OnCursor (Point position) {
+		public override bool OnCursor (Point position) {
 			double dist = Math.Sqrt ((position.X - center.X) * (position.X - center.X) + (position.Y - center.Y) * (position.Y - center.Y));
 			double margin = (thickness / 2) + 5;
 			if (dist < radius + margin && dist > radius - margin) {
@@ -139,7 +152,7 @@ namespace gc_proj_2.Objects {
 			return false;
 		}
 
-		public void OpenEditor (MainWindow window) {
+		public override void OpenEditor (MainWindow window) {
 			window.CurrentTool = new Editors.CircleEditor (window, this);
 		}
 	}
