@@ -51,9 +51,12 @@ namespace gc_proj_2 {
 			set {
 				tempObjects.Clear ();
 				currentTool = value;
-				
+
 				if (currentTool != null) {
 					currentTool.Initialize ();
+					statusStrip.Text = currentTool.Name;
+				} else {
+					statusStrip.Text = "Cursor Tool";
 				}
 
 				redraw ();
@@ -85,7 +88,7 @@ namespace gc_proj_2 {
 			buttonCursor.Checked = true;
 
 			// initial project
-			NewProject (500, 400);
+			NewProject (1000, 700);
 
 			// test
 			objects.Add ("line1", new Objects.VectorLine (new Point (0, 0), new Point (200, 110), Color.Black, 16));

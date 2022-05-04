@@ -88,15 +88,23 @@ namespace gc_proj_2.Objects {
 			// DDA algorithm implementation
 			Point startPoint = p1, endPoint = p2;
 
-			float dx = endPoint.X - startPoint.X;
-			float dy = endPoint.Y - startPoint.Y;
+			float dx = Math.Abs (endPoint.X - startPoint.X);
+			float dy = Math.Abs (endPoint.Y - startPoint.Y);
 			int cx, cy;
 			
 			if (dx >= dy) {
-				float m = dy / dx;
+				if (p1.X < p2.X) {
+					startPoint = p1;
+					endPoint = p2;
+				} else {
+					startPoint = p2;
+					endPoint = p1;
+				}
+
+				float m = (float)(endPoint.Y - startPoint.Y) / (float)(endPoint.X - startPoint.X);
 				float y = startPoint.Y;
 
-				for (int x = Math.Min(startPoint.X, endPoint.X), j = 0; x < Math.Max (startPoint.X, endPoint.X); ++x, ++j) {
+				for (int x = startPoint.X, j = 0; x < endPoint.X; ++x, ++j) {
 					if (dotted && j % 6 < 3) {
 						y += m;
 						continue;
@@ -113,18 +121,26 @@ namespace gc_proj_2.Objects {
 						int max = (int) Math.Ceiling ((thickness - 1) / 2.0);
 
 						for (int i = -min; i < max; ++i) {
-							if (cx + i > width || cx + i < 0) continue;
-							setPixel (pixels, cx + i, cy, scanlineWidth, channels, color);
+							if (cy + i >= height || cy + i < 0) continue;
+							setPixel (pixels, cx, cy + i, scanlineWidth, channels, color);
 						}
 					}
 
 					y += m;
 				}
 			} else {
-				float m = dx / dy;
-				float x = startPoint.Y;
+				if (p1.Y < p2.Y) {
+					startPoint = p1;
+					endPoint = p2;
+				} else {
+					startPoint = p2;
+					endPoint = p1;
+				}
 
-				for (int y = Math.Min (startPoint.Y, endPoint.Y), j = 0; y < Math.Max (startPoint.Y, endPoint.Y); ++y, ++j) {
+				float m = (float)(endPoint.X - startPoint.X) / (float)(endPoint.Y - startPoint.Y);
+				float x = startPoint.X;
+
+				for (int y = startPoint.Y, j = 0; y < endPoint.Y; ++y, ++j) {
 					if (dotted && j % 6 < 3) {
 						x += m;
 						continue;
@@ -141,8 +157,8 @@ namespace gc_proj_2.Objects {
 						int max = (int) Math.Ceiling ((thickness - 1) / 2.0);
 
 						for (int i = -min; i < max; ++i) {
-							if (cy + i > height || cy + i < 0) continue;
-							setPixel (pixels, cx, cy + i, scanlineWidth, channels, color);
+							if (cx + i >= width || cx + i < 0) continue;
+							setPixel (pixels, cx + i, cy, scanlineWidth, channels, color);
 						}
 					}
 

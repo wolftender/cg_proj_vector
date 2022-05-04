@@ -17,6 +17,8 @@ namespace gc_proj_2 {
 			mainWindow = window;
 		}
 
+		public abstract string Name { get; }
+
 		public virtual void Initialize () { }
 		public virtual void OnColorChange (Color newColor) { }
 		public virtual void OnMouseClick (MouseEventArgs e, PictureBox canvas, Point position) { }

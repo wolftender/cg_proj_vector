@@ -17,6 +17,8 @@ namespace gc_proj_2.Editors {
 			markerCenter = new VectorCircle (circle.Center, 7, Color.Red, 4);
 		}
 
+		public override string Name => "Circle Editor";
+
 		public override void Initialize () {
 			MainWindow.TempObjects.Add (markerCenter);
 		}
