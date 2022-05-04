@@ -66,13 +66,26 @@ namespace gc_proj_2 {
 		
 		private void updateToolbar () {
 			buttonCursor.Checked = (currentTool == null);
-			buttonLine.Checked = false;
+			buttonLine.Checked = (currentTool is Editors.LineCreator);
 			buttonPolygon.Checked = false;
 			buttonCircle.Checked = false;
 		}
 
 		public List<IVectorObject> TempObjects {
 			get { return tempObjects; }
+		}
+
+		public void AddObject (string name, IVectorObject vectorObject) {
+			string newName = name;
+			if (objects.ContainsKey (newName)) {
+				int i = 0;
+				do {
+					newName = name + i;
+					i++;
+				} while (objects.ContainsKey (newName));
+			}
+
+			objects.Add (newName, vectorObject);
 		}
 
 		public MainWindow () {
@@ -258,6 +271,7 @@ namespace gc_proj_2 {
 
 		private void buttonLine_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
+				CurrentTool = new Editors.LineCreator (this);
 			}
 		}
 
