@@ -54,9 +54,9 @@ namespace gc_proj_2 {
 
 				if (currentTool != null) {
 					currentTool.Initialize ();
-					statusStrip.Text = currentTool.Name;
+					toolStripStatusLabelTool.Text = currentTool.Name;
 				} else {
-					statusStrip.Text = "Cursor Tool";
+					toolStripStatusLabelTool.Text = "Cursor Tool";
 				}
 
 				redraw ();
@@ -201,7 +201,7 @@ namespace gc_proj_2 {
 			buttonColor.BackgroundImage = newImage;
 		}
 
-		private void buttonColor_Click (object sender, EventArgs e) {
+		private void colorSelection () {
 			ColorDialog dialog = new ColorDialog ();
 			dialog.Color = currentColor;
 
@@ -213,6 +213,10 @@ namespace gc_proj_2 {
 					currentTool.OnColorChange (currentColor);
 				}
 			}
+		}
+
+		private void buttonColor_Click (object sender, EventArgs e) {
+			colorSelection ();
 		}
 
 		private Point calculateRelativePosition (Point pos) {
@@ -313,6 +317,63 @@ namespace gc_proj_2 {
 			if (currentTool != null) {
 				currentTool.OnKeyDown (e);
 			}
+		}
+
+		private void newToolStripMenuItem_Click (object sender, EventArgs e) {
+
+		}
+
+		private void openToolStripMenuItem_Click (object sender, EventArgs e) {
+
+		}
+
+		private void saveToolStripMenuItem_Click (object sender, EventArgs e) {
+
+		}
+
+		private void saveAsToolStripMenuItem_Click (object sender, EventArgs e) {
+
+		}
+
+		private void exportAsToolStripMenuItem_Click (object sender, EventArgs e) {
+
+		}
+
+		private void exitToolStripMenuItem_Click (object sender, EventArgs e) {
+			Close ();
+		}
+
+		private void clearAllObjectsToolStripMenuItem_Click (object sender, EventArgs e) {
+			objects.Clear ();
+			CurrentTool = null;
+			redraw ();
+		}
+
+		private void lineToolStripMenuItem_Click (object sender, EventArgs e) {
+			CurrentTool = new Editors.LineCreator (this);
+		}
+
+		private void circleToolStripMenuItem_Click (object sender, EventArgs e) {
+			CurrentTool = new Editors.CircleCreator (this);
+		}
+
+		private void polygonToolStripMenuItem_Click (object sender, EventArgs e) {
+			CurrentTool = new Editors.PolygonCreator (this);
+		}
+
+		private void aboutToolStripMenuItem_Click (object sender, EventArgs e) {
+
+		}
+
+		private void colorSelectToolStripMenuItem_Click (object sender, EventArgs e) {
+			colorSelection ();
+		}
+
+		private void MainWindow_FormClosing (object sender, FormClosingEventArgs e) {
+			DialogResult res = MessageBox.Show (this, "are you sure that you want to exit?", "exit",
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+			e.Cancel = (res == DialogResult.No);
 		}
 	}
 }
