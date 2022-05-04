@@ -272,24 +272,36 @@ namespace gc_proj_2 {
 			if ((sender as CheckBox).Checked) {
 				CurrentTool = null;
 			}
+
+			this.Focus ();
+			ActiveControl = null;
 		}
 
 		private void buttonLine_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
 				CurrentTool = new Editors.LineCreator (this);
 			}
+
+			this.Focus ();
+			ActiveControl = null;
 		}
 
 		private void buttonPolygon_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
 				CurrentTool = new Editors.PolygonCreator (this);
 			}
+
+			this.Focus ();
+			ActiveControl = null;
 		}
 
 		private void buttonCircle_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
 				CurrentTool = new Editors.CircleCreator (this);
 			}
+
+			this.Focus ();
+			ActiveControl = null;
 		}
 
 		public void DeleteObject (IVectorObject objectInstance) {
@@ -320,7 +332,11 @@ namespace gc_proj_2 {
 		}
 
 		private void newToolStripMenuItem_Click (object sender, EventArgs e) {
-
+			NewProjectForm form = new NewProjectForm ();
+			
+			if (form.ShowDialog (this) == DialogResult.OK) {
+				NewProject (form.ProjectWidth, form.ProjectHeight);
+			}
 		}
 
 		private void openToolStripMenuItem_Click (object sender, EventArgs e) {
@@ -336,7 +352,20 @@ namespace gc_proj_2 {
 		}
 
 		private void exportAsToolStripMenuItem_Click (object sender, EventArgs e) {
+			SaveFileDialog saveFileDialog = new SaveFileDialog ();
+			saveFileDialog.DefaultExt = "png";
 
+			if (saveFileDialog.ShowDialog (this) == DialogResult.OK) {
+				try {
+					if (canvas.Image != null) {
+						canvas.Image.Save (saveFileDialog.FileName);
+					} else {
+						MessageBox.Show ("bitmap is null", "save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				} catch (Exception exception) {
+					MessageBox.Show ("failed to save filtered image to file, error:\n" + exception.Message, "save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 		}
 
 		private void exitToolStripMenuItem_Click (object sender, EventArgs e) {
