@@ -68,7 +68,7 @@ namespace gc_proj_2 {
 			buttonCursor.Checked = (currentTool == null);
 			buttonLine.Checked = (currentTool is Editors.LineCreator);
 			buttonPolygon.Checked = false;
-			buttonCircle.Checked = false;
+			buttonCircle.Checked = (currentTool is Editors.CircleCreator);
 		}
 
 		public List<IVectorObject> TempObjects {
@@ -282,6 +282,7 @@ namespace gc_proj_2 {
 
 		private void buttonCircle_CheckedChanged (object sender, EventArgs e) {
 			if ((sender as CheckBox).Checked) {
+				CurrentTool = new Editors.CircleCreator (this);
 			}
 		}
 
