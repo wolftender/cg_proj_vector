@@ -8,14 +8,14 @@ using System.Drawing.Drawing2D;
 using gc_proj_2.Objects;
 
 namespace gc_proj_2.Editors {
-	public class LineCreator : ObjectEditor {
-		public override string Name => "Line Creator";
+	public class RectangleCreator : ObjectEditor {
+		public override string Name => "Rectangle Creator";
 
 		private Point start, end;
 		private VectorCircle markerStart;
 		private bool firstPointPlaced;
 
-		public LineCreator (MainWindow window) : base (window) { }
+		public RectangleCreator (MainWindow window) : base (window) { }
 
 		public override void OnMouseClick (MouseEventArgs e, PictureBox canvas, Point position) {
 			if (!firstPointPlaced) {
@@ -26,11 +26,11 @@ namespace gc_proj_2.Editors {
 				MainWindow.Redraw ();
 			} else {
 				end = position;
-				VectorLine line = new VectorLine () {
+				VectorRectangle rect = new VectorRectangle () {
 					P1 = start, P2 = end, Color = MainWindow.CurrentColor, Thickness = 1
 				};
-				MainWindow.AddObject ("line", line);
-				MainWindow.CurrentTool = new LineEditor (MainWindow, line);
+				MainWindow.AddObject ("rectangle", rect);
+				MainWindow.CurrentTool = new RectangleEditor (MainWindow, rect);
 			}
 		}
 	}

@@ -53,6 +53,7 @@ namespace gc_proj_2 {
 			this.buttonLine = new System.Windows.Forms.CheckBox();
 			this.buttonPolygon = new System.Windows.Forms.CheckBox();
 			this.buttonCircle = new System.Windows.Forms.CheckBox();
+			this.buttonRectangle = new System.Windows.Forms.CheckBox();
 			this.canvas = new System.Windows.Forms.PictureBox();
 			this.statusStrip.SuspendLayout();
 			this.menuStrip.SuspendLayout();
@@ -66,17 +67,16 @@ namespace gc_proj_2 {
 			this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelTool});
-			this.statusStrip.Location = new System.Drawing.Point(0, 918);
+			this.statusStrip.Location = new System.Drawing.Point(0, 683);
 			this.statusStrip.Name = "statusStrip";
-			this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-			this.statusStrip.Size = new System.Drawing.Size(1239, 22);
+			this.statusStrip.Size = new System.Drawing.Size(1084, 22);
 			this.statusStrip.TabIndex = 0;
 			this.statusStrip.Text = "statusStrip1";
 			// 
 			// toolStripStatusLabelTool
 			// 
 			this.toolStripStatusLabelTool.Name = "toolStripStatusLabelTool";
-			this.toolStripStatusLabelTool.Size = new System.Drawing.Size(0, 16);
+			this.toolStripStatusLabelTool.Size = new System.Drawing.Size(0, 17);
 			// 
 			// menuStrip
 			// 
@@ -87,8 +87,7 @@ namespace gc_proj_2 {
             this.helpToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-			this.menuStrip.Size = new System.Drawing.Size(1239, 30);
+			this.menuStrip.Size = new System.Drawing.Size(1084, 24);
 			this.menuStrip.TabIndex = 1;
 			this.menuStrip.Text = "menuStrip1";
 			// 
@@ -104,56 +103,56 @@ namespace gc_proj_2 {
             this.toolStripSeparator3,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
 			// 
 			// newToolStripMenuItem
 			// 
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.newToolStripMenuItem.Text = "New";
 			this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.openToolStripMenuItem.Text = "Open";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.saveAsToolStripMenuItem.Text = "Save as...";
 			this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(128, 6);
 			// 
 			// exportAsToolStripMenuItem
 			// 
 			this.exportAsToolStripMenuItem.Name = "exportAsToolStripMenuItem";
-			this.exportAsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.exportAsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.exportAsToolStripMenuItem.Text = "Export as...";
 			this.exportAsToolStripMenuItem.Click += new System.EventHandler(this.exportAsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(128, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -165,7 +164,7 @@ namespace gc_proj_2 {
             this.toolStripSeparator4,
             this.clearAllObjectsToolStripMenuItem});
 			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-			this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
 			this.editToolStripMenuItem.Text = "Edit";
 			// 
 			// addObjectToolStripMenuItem
@@ -175,46 +174,46 @@ namespace gc_proj_2 {
             this.circleToolStripMenuItem,
             this.polygonToolStripMenuItem});
 			this.addObjectToolStripMenuItem.Name = "addObjectToolStripMenuItem";
-			this.addObjectToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+			this.addObjectToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
 			this.addObjectToolStripMenuItem.Text = "Add Object";
 			// 
 			// lineToolStripMenuItem
 			// 
 			this.lineToolStripMenuItem.Name = "lineToolStripMenuItem";
-			this.lineToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
+			this.lineToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
 			this.lineToolStripMenuItem.Text = "Line";
 			this.lineToolStripMenuItem.Click += new System.EventHandler(this.lineToolStripMenuItem_Click);
 			// 
 			// circleToolStripMenuItem
 			// 
 			this.circleToolStripMenuItem.Name = "circleToolStripMenuItem";
-			this.circleToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
+			this.circleToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
 			this.circleToolStripMenuItem.Text = "Circle";
 			this.circleToolStripMenuItem.Click += new System.EventHandler(this.circleToolStripMenuItem_Click);
 			// 
 			// polygonToolStripMenuItem
 			// 
 			this.polygonToolStripMenuItem.Name = "polygonToolStripMenuItem";
-			this.polygonToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
+			this.polygonToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
 			this.polygonToolStripMenuItem.Text = "Polygon";
 			this.polygonToolStripMenuItem.Click += new System.EventHandler(this.polygonToolStripMenuItem_Click);
 			// 
 			// colorSelectToolStripMenuItem
 			// 
 			this.colorSelectToolStripMenuItem.Name = "colorSelectToolStripMenuItem";
-			this.colorSelectToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+			this.colorSelectToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
 			this.colorSelectToolStripMenuItem.Text = "Color Select";
 			this.colorSelectToolStripMenuItem.Click += new System.EventHandler(this.colorSelectToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator4
 			// 
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
+			this.toolStripSeparator4.Size = new System.Drawing.Size(158, 6);
 			// 
 			// clearAllObjectsToolStripMenuItem
 			// 
 			this.clearAllObjectsToolStripMenuItem.Name = "clearAllObjectsToolStripMenuItem";
-			this.clearAllObjectsToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+			this.clearAllObjectsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
 			this.clearAllObjectsToolStripMenuItem.Text = "Clear All Objects";
 			this.clearAllObjectsToolStripMenuItem.Click += new System.EventHandler(this.clearAllObjectsToolStripMenuItem_Click);
 			// 
@@ -223,13 +222,13 @@ namespace gc_proj_2 {
 			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
 			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.helpToolStripMenuItem.Text = "Help";
 			// 
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.aboutToolStripMenuItem.Text = "About...";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
 			// 
@@ -242,14 +241,13 @@ namespace gc_proj_2 {
 			this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.layoutMain.Controls.Add(this.panelTools, 0, 0);
 			this.layoutMain.Controls.Add(this.canvas, 0, 1);
-			this.layoutMain.Location = new System.Drawing.Point(0, 36);
-			this.layoutMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.layoutMain.Location = new System.Drawing.Point(0, 27);
 			this.layoutMain.Name = "layoutMain";
 			this.layoutMain.RowCount = 2;
-			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
 			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-			this.layoutMain.Size = new System.Drawing.Size(1239, 871);
+			this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.layoutMain.Size = new System.Drawing.Size(1084, 653);
 			this.layoutMain.TabIndex = 2;
 			// 
 			// panelTools
@@ -262,18 +260,17 @@ namespace gc_proj_2 {
 			this.panelTools.Controls.Add(this.buttonLine);
 			this.panelTools.Controls.Add(this.buttonPolygon);
 			this.panelTools.Controls.Add(this.buttonCircle);
-			this.panelTools.Location = new System.Drawing.Point(3, 4);
-			this.panelTools.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.panelTools.Controls.Add(this.buttonRectangle);
+			this.panelTools.Location = new System.Drawing.Point(3, 3);
 			this.panelTools.Name = "panelTools";
-			this.panelTools.Size = new System.Drawing.Size(1233, 47);
+			this.panelTools.Size = new System.Drawing.Size(1078, 35);
 			this.panelTools.TabIndex = 1;
 			// 
 			// buttonColor
 			// 
-			this.buttonColor.Location = new System.Drawing.Point(3, 4);
-			this.buttonColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonColor.Location = new System.Drawing.Point(3, 3);
 			this.buttonColor.Name = "buttonColor";
-			this.buttonColor.Size = new System.Drawing.Size(37, 43);
+			this.buttonColor.Size = new System.Drawing.Size(32, 32);
 			this.buttonColor.TabIndex = 0;
 			this.buttonColor.TabStop = false;
 			this.buttonColor.UseVisualStyleBackColor = true;
@@ -284,10 +281,9 @@ namespace gc_proj_2 {
 			this.buttonCursor.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonCursor.BackgroundImage = global::gc_proj_2.Properties.Resources.cursor;
 			this.buttonCursor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonCursor.Location = new System.Drawing.Point(46, 4);
-			this.buttonCursor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonCursor.Location = new System.Drawing.Point(41, 3);
 			this.buttonCursor.Name = "buttonCursor";
-			this.buttonCursor.Size = new System.Drawing.Size(37, 43);
+			this.buttonCursor.Size = new System.Drawing.Size(32, 32);
 			this.buttonCursor.TabIndex = 4;
 			this.buttonCursor.TabStop = false;
 			this.buttonCursor.UseVisualStyleBackColor = true;
@@ -298,10 +294,9 @@ namespace gc_proj_2 {
 			this.buttonLine.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonLine.BackgroundImage = global::gc_proj_2.Properties.Resources.line;
 			this.buttonLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonLine.Location = new System.Drawing.Point(89, 4);
-			this.buttonLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonLine.Location = new System.Drawing.Point(79, 3);
 			this.buttonLine.Name = "buttonLine";
-			this.buttonLine.Size = new System.Drawing.Size(37, 43);
+			this.buttonLine.Size = new System.Drawing.Size(32, 32);
 			this.buttonLine.TabIndex = 1;
 			this.buttonLine.TabStop = false;
 			this.buttonLine.UseVisualStyleBackColor = true;
@@ -312,10 +307,9 @@ namespace gc_proj_2 {
 			this.buttonPolygon.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonPolygon.BackgroundImage = global::gc_proj_2.Properties.Resources.polygon;
 			this.buttonPolygon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonPolygon.Location = new System.Drawing.Point(132, 4);
-			this.buttonPolygon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonPolygon.Location = new System.Drawing.Point(117, 3);
 			this.buttonPolygon.Name = "buttonPolygon";
-			this.buttonPolygon.Size = new System.Drawing.Size(37, 43);
+			this.buttonPolygon.Size = new System.Drawing.Size(32, 32);
 			this.buttonPolygon.TabIndex = 2;
 			this.buttonPolygon.TabStop = false;
 			this.buttonPolygon.UseVisualStyleBackColor = true;
@@ -326,14 +320,26 @@ namespace gc_proj_2 {
 			this.buttonCircle.Appearance = System.Windows.Forms.Appearance.Button;
 			this.buttonCircle.BackgroundImage = global::gc_proj_2.Properties.Resources.circle;
 			this.buttonCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.buttonCircle.Location = new System.Drawing.Point(175, 4);
-			this.buttonCircle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonCircle.Location = new System.Drawing.Point(155, 3);
 			this.buttonCircle.Name = "buttonCircle";
-			this.buttonCircle.Size = new System.Drawing.Size(37, 43);
+			this.buttonCircle.Size = new System.Drawing.Size(32, 32);
 			this.buttonCircle.TabIndex = 3;
 			this.buttonCircle.TabStop = false;
 			this.buttonCircle.UseVisualStyleBackColor = true;
 			this.buttonCircle.CheckedChanged += new System.EventHandler(this.buttonCircle_CheckedChanged);
+			// 
+			// buttonRectangle
+			// 
+			this.buttonRectangle.Appearance = System.Windows.Forms.Appearance.Button;
+			this.buttonRectangle.BackgroundImage = global::gc_proj_2.Properties.Resources.rectangle;
+			this.buttonRectangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.buttonRectangle.Location = new System.Drawing.Point(193, 3);
+			this.buttonRectangle.Name = "buttonRectangle";
+			this.buttonRectangle.Size = new System.Drawing.Size(32, 32);
+			this.buttonRectangle.TabIndex = 5;
+			this.buttonRectangle.TabStop = false;
+			this.buttonRectangle.UseVisualStyleBackColor = true;
+			this.buttonRectangle.CheckedChanged += new System.EventHandler(this.buttonRectangle_CheckedChanged);
 			// 
 			// canvas
 			// 
@@ -341,10 +347,9 @@ namespace gc_proj_2 {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaption;
-			this.canvas.Location = new System.Drawing.Point(3, 59);
-			this.canvas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.canvas.Location = new System.Drawing.Point(3, 44);
 			this.canvas.Name = "canvas";
-			this.canvas.Size = new System.Drawing.Size(1233, 808);
+			this.canvas.Size = new System.Drawing.Size(1078, 606);
 			this.canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.canvas.TabIndex = 2;
 			this.canvas.TabStop = false;
@@ -355,14 +360,13 @@ namespace gc_proj_2 {
 			// 
 			// MainWindow
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1239, 940);
+			this.ClientSize = new System.Drawing.Size(1084, 705);
 			this.Controls.Add(this.layoutMain);
 			this.Controls.Add(this.statusStrip);
 			this.Controls.Add(this.menuStrip);
 			this.MainMenuStrip = this.menuStrip;
-			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "MainWindow";
 			this.Text = "vector graphics editor v0.1";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
@@ -412,6 +416,7 @@ namespace gc_proj_2 {
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem colorSelectToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+		private System.Windows.Forms.CheckBox buttonRectangle;
 	}
 }
 

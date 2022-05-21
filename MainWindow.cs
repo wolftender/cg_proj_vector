@@ -83,6 +83,7 @@ namespace gc_proj_2 {
 			buttonLine.Checked = (currentTool is Editors.LineCreator);
 			buttonPolygon.Checked = (CurrentTool is Editors.PolygonCreator);
 			buttonCircle.Checked = (currentTool is Editors.CircleCreator);
+			buttonRectangle.Checked = (currentTool is Editors.RectangleCreator);
 		}
 
 		public List<VectorObject> TempObjects {
@@ -125,7 +126,7 @@ namespace gc_proj_2 {
 			//objects.Add ("circle1", new Objects.VectorCircle (new Point (200, 200), 30, Color.Black));
 			//objects.Add ("circle2", new Objects.VectorCircle (new Point (200, 200), 60, Color.Black, 16));
 
-			objects.Add ("arc1", new Objects.VectorArc () {
+			/*objects.Add ("arc1", new Objects.VectorArc () {
 				A = new Point (500, 350),
 				B = new Point (650, 180),
 				C = new Point (100, 100),
@@ -137,7 +138,7 @@ namespace gc_proj_2 {
 				B = new Point (500, 450),
 				C = new Point (550, 80),
 				Color = Color.Black
-			});
+			});*/
 
 			redraw ();
 		}
@@ -332,6 +333,15 @@ namespace gc_proj_2 {
 			}
 
 			this.Focus ();
+			ActiveControl = null;
+		}
+
+		private void buttonRectangle_CheckedChanged (object sender, EventArgs e) {
+			if ((sender as CheckBox).Checked) {
+				CurrentTool = new Editors.RectangleCreator (this);
+			}
+
+			Focus ();
 			ActiveControl = null;
 		}
 
