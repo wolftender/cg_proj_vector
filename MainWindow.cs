@@ -119,11 +119,26 @@ namespace gc_proj_2 {
 			NewProject (1000, 700);
 
 			// test
-			objects.Add ("line1", new Objects.VectorLine (new Point (0, 0), new Point (200, 110), Color.Black, 16));
-			objects.Add ("line2", new Objects.VectorLine (new Point (0, 0), new Point (110, 200), Color.Black, 16));
-			objects.Add ("line3", new Objects.VectorLine (new Point (0, 0), new Point (200, 200), Color.Black, 1) { Dotted = true });
-			objects.Add ("circle1", new Objects.VectorCircle (new Point (200, 200), 30, Color.Black));
-			objects.Add ("circle2", new Objects.VectorCircle (new Point (200, 200), 60, Color.Black, 16));
+			//objects.Add ("line1", new Objects.VectorLine (new Point (0, 0), new Point (200, 110), Color.Black, 16));
+			//objects.Add ("line2", new Objects.VectorLine (new Point (0, 0), new Point (110, 200), Color.Black, 16));
+			//objects.Add ("line3", new Objects.VectorLine (new Point (0, 0), new Point (200, 200), Color.Black, 1) { Dotted = true });
+			//objects.Add ("circle1", new Objects.VectorCircle (new Point (200, 200), 30, Color.Black));
+			//objects.Add ("circle2", new Objects.VectorCircle (new Point (200, 200), 60, Color.Black, 16));
+
+			objects.Add ("arc1", new Objects.VectorArc () {
+				A = new Point (500, 350),
+				B = new Point (650, 180),
+				C = new Point (100, 100),
+				Color = Color.Black
+			});
+
+			objects.Add ("arc2", new Objects.VectorArc () {
+				A = new Point (400, 250),
+				B = new Point (500, 450),
+				C = new Point (550, 80),
+				Color = Color.Black
+			});
+
 			redraw ();
 		}
 

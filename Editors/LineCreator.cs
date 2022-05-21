@@ -26,7 +26,9 @@ namespace gc_proj_2.Editors {
 				MainWindow.Redraw ();
 			} else {
 				end = position;
-				VectorLine line = new VectorLine (start, end, MainWindow.CurrentColor);
+				VectorLine line = new GuptaSproullLine () {
+					P1 = start, P2 = end, Color = MainWindow.CurrentColor, Thickness = 1
+				};
 				MainWindow.AddObject ("line", line);
 				MainWindow.CurrentTool = new LineEditor (MainWindow, line);
 			}

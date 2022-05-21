@@ -81,7 +81,7 @@ namespace gc_proj_2.Objects {
 			return new VectorLine (p1, p2, color);
 		}
 
-		private void setPixel (byte [] pixels, int cx, int cy, int w, int h, int scanlineWidth, int channels, Color color) {
+		protected void setPixel (byte [] pixels, int cx, int cy, int w, int h, int scanlineWidth, int channels, Color color) {
 			if (cx < 0 || cx >= w || cy < 0 || cy >= h) return;
 			pixels [cy * scanlineWidth + cx * channels + 0] = color.B;
 			pixels [cy * scanlineWidth + cx * channels + 1] = color.G;
