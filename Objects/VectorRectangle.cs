@@ -57,6 +57,9 @@ namespace gc_proj_2.Objects {
 
 			bottomLine.P1 = c;
 			bottomLine.P2 = d;
+
+			leftLine.Color = rightLine.Color = topLine.Color = bottomLine.Color = Color;
+			leftLine.Thickness = rightLine.Thickness = topLine.Thickness = bottomLine.Thickness = Thickness;
 		}
 
 		public VectorRectangle () {
